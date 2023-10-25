@@ -33,6 +33,7 @@ var isAttacking : bool = false
 # Whip packed scene
 @export var playerWhip : PackedScene
 @export var leafParticles : PackedScene
+@export var dashParticles : PackedScene
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -120,14 +121,11 @@ func _physics_process(delta):
 			velocity = dashSpeed * inputDirection
 		else:
 			velocity = dashSpeed * Vector2(faceDirection,0.0)
-		if(faceDirection > 0):
-			var particle = leafParticles.instantiate()
-			add_child(particle)
-			particle.rotation = 90
-		else:
-			var particle = leafParticles.instantiate()
-			add_child(particle)
-			particle.rotation = -90
+		var particle = dashParticles.instantiate()
+		add_child(particle)
+		particle = leafParticles.instantiate()
+		add_child(particle)
+		particle.rotation_degrees = 90 + (180/PI) * atan2(inputDirection.y,inputDirection.x)
 		dashTimer.start()	
 
 	move_and_slide()
@@ -135,7 +133,7 @@ func _physics_process(delta):
 func _process(_delta):
 	
 	# Can only attack once at a time
-	if(!isAttacking and whipUnlocked):
+	if(!isAttacking and whipUnlocked and !isDashing):
 		
 		# Controller and mouse attack handled differently
 		# Controller using directional input

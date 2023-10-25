@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://br88pvgncorgq"]
 
 [ext_resource type="Script" path="res://Objects/grapple_point.gd" id="1_6qcy1"]
-[ext_resource type="Texture2D" uid="uid://cb3tegbj730ah" path="res://icon.svg" id="2_e6og4"]
+[ext_resource type="Texture2D" uid="uid://bp2joo7ii7iul" path="res://icon.svg" id="2_e6og4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ekjlw"]
 radius = 15.1327

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bb6jlp1s4wgr4"]
 
 [ext_resource type="Script" path="res://Player/player_whip.gd" id="1_3u8ul"]
-[ext_resource type="Texture2D" uid="uid://cb3tegbj730ah" path="res://icon.svg" id="1_487wg"]
+[ext_resource type="Texture2D" uid="uid://bp2joo7ii7iul" path="res://icon.svg" id="1_487wg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e02ij"]
 radius = 3.0
