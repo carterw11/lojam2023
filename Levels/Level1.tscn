@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bml3loy4ekno1"]
+[gd_scene load_steps=8 format=3 uid="uid://bml3loy4ekno1"]
 
 [ext_resource type="Texture2D" uid="uid://bp2joo7ii7iul" path="res://icon.svg" id="1_dienr"]
 [ext_resource type="PackedScene" uid="uid://cofy84srvcg64" path="res://Player/player.tscn" id="2_73ql2"]
 [ext_resource type="PackedScene" uid="uid://br88pvgncorgq" path="res://Objects/grapple_point.tscn" id="3_x17s2"]
+[ext_resource type="PackedScene" uid="uid://66q78oweiamn" path="res://Objects/Portal/Portal.tscn" id="4_j1bfm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gvrdx"]
 
@@ -283,3 +284,8 @@ dashUnlocked = false
 
 [node name="Grapple Point" parent="." instance=ExtResource("3_x17s2")]
 position = Vector2(328, 230)
+
+[node name="Portal" parent="." instance=ExtResource("4_j1bfm")]
+position = Vector2(-11, 83)
+rotation = 1.5708
+nextLevel = "res://Levels/Level2.tscn"

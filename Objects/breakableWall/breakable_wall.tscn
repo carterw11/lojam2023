@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://bc1rhbqqjd0ku"]
 
-[ext_resource type="Texture2D" uid="uid://bjjteeqnmif07" path="res://Images/TestAssets/wall.png" id="1_eqjgc"]
-[ext_resource type="Script" path="res://Objects/breakableWall/breakable_wall.gd" id="1_fde6f"]
+[ext_resource type="Script" path="res://Objects/BreakableWall/breakable_wall.gd" id="1_avrct"]
+[ext_resource type="Texture2D" uid="uid://bjjteeqnmif07" path="res://Images/TestAssets/wall.png" id="2_v2jdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnw5e"]
 size = Vector2(32, 32)
 
 [node name="StaticBody2D" type="StaticBody2D"]
-script = ExtResource("1_fde6f")
+script = ExtResource("1_avrct")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_eqjgc")
+texture = ExtResource("2_v2jdh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fnw5e")
