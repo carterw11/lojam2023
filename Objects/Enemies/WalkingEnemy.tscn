@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cof6flpt4eg2p"]
+
+[ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_xohox"]
+[ext_resource type="Texture2D" uid="uid://cjpu5w1vfxi40" path="res://Images/TestAssets/enemy.png" id="2_nhync"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wm0cc"]
+size = Vector2(14, 31)
+
+[node name="WalkingEnemy" type="CharacterBody2D"]
+script = ExtResource("1_xohox")
+canShoot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nhync")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_wm0cc")
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(11, 0)
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-11, 0)
+
+[node name="CycleTimer" type="Timer" parent="."]
+
+[node name="ShootingTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CycleTimer" to="." method="_on_cycle_timer_timeout"]
+[connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]
