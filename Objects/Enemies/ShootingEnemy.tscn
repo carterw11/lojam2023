@@ -1,16 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cof6flpt4eg2p"]
+[gd_scene load_steps=4 format=3 uid="uid://cdkbtuoibvjdf"]
 
-[ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_xohox"]
-[ext_resource type="Texture2D" uid="uid://cjpu5w1vfxi40" path="res://Images/TestAssets/enemy.png" id="2_nhync"]
+[ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_g7tvp"]
+[ext_resource type="Texture2D" uid="uid://cjpu5w1vfxi40" path="res://Images/TestAssets/enemy.png" id="2_wnadx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wm0cc"]
 size = Vector2(14, 31)
 
-[node name="WalkingEnemy" type="CharacterBody2D" groups=["Enemy"]]
-script = ExtResource("1_xohox")
+[node name="ShootingEnemy" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_g7tvp")
+canShoot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_nhync")
+texture = ExtResource("2_wnadx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
