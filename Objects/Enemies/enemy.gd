@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed : float = 100.0
+@export var speed : float = 50.0
 @export var jumpVelocity : float = -400.0
 @export var cycleTime : float = 9
 @export var shootingTime : float = 2
@@ -31,7 +31,7 @@ func _physics_process(delta):
 		ChangeDirection()
 		
 	if canMove:
-		velocity.x = direction.x * speed
+		velocity = direction * speed
 
 	move_and_slide()
 	
