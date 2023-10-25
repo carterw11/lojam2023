@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dslnwcy0jj7as"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5syu6"]
+
+[sub_resource type="Gradient" id="Gradient_uxkkm"]
+offsets = PackedFloat32Array(0, 0.688889, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tdsen"]
+gradient = SubResource("Gradient_uxkkm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ugrqd"]
+emission_shape = 3
+emission_box_extents = Vector3(20, 0, 0)
+particle_flag_disable_z = true
+direction = Vector3(1, -0.7, 0)
+spread = 10.89
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 130.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color_ramp = SubResource("GradientTexture1D_tdsen")
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+
+[node name="Ground Walk Particles" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_5syu6")
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_ugrqd")

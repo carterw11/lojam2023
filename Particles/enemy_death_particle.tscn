@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cskh7b70ccq8q"]
+[gd_scene load_steps=7 format=3 uid="uid://cskh7b70ccq8q"]
 
 [ext_resource type="Script" path="res://Particles/enemy_death_particle.gd" id="1_4dxm5"]
+[ext_resource type="Texture2D" uid="uid://cjpu5w1vfxi40" path="res://Images/TestAssets/enemy.png" id="1_ncv27"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2h0wt"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 3
+particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_rwyi0"]
 offsets = PackedFloat32Array(0, 0.518519, 1)
@@ -12,6 +17,8 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_rwyi0")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_loynw"]
+emission_shape = 1
+emission_sphere_radius = 10.0
 particle_flag_disable_z = true
 spread = 180.0
 gravity = Vector3(0, 98, 0)
@@ -20,6 +27,7 @@ initial_velocity_max = 100.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 color_ramp = SubResource("GradientTexture1D_4giyc")
+anim_offset_max = 1.0
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.25
@@ -27,8 +35,9 @@ collision_bounce = 0.25
 [node name="Enemy Death Particle" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_2h0wt")
 emitting = false
-amount = 30
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_loynw")
+texture = ExtResource("1_ncv27")
 lifetime = 0.8
 one_shot = true
 explosiveness = 0.9
