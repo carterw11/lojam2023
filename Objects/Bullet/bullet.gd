@@ -19,7 +19,7 @@ func _ready():
 
 func _physics_process(delta):
 	sprite.rotate(deg_to_rad(0.1 * rotateSpeed))
-	position += transform.x * speed * delta * direction.x
+	position += speed * delta * direction
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
@@ -41,5 +41,5 @@ func _on_grace_timeout():
 
 func _on_area_entered(area):
 	if area.is_in_group("playerAttack"):
-		direction *= -1
-		speed *= 2
+		direction = (self.position - area.get_parent().position).normalized()
+		speed *= 3

@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var isFlying : bool = false
 @export var canShoot : bool = false
 @export var Bullet : PackedScene = preload("res://Objects/Bullet/bullet.tscn")
+@export var deathParticles : PackedScene = preload("res://Particles/enemy_death_particle.tscn")
 @export var direction : Vector2 = Vector2(1, 0)
 
 @onready var cycleTimer = $CycleTimer
@@ -73,4 +74,7 @@ func _on_shooting_timer_timeout():
 	
 	
 func death():
+	var particle = deathParticles.instantiate()
+	get_parent().add_child(particle)
+	particle.position = position
 	queue_free()

@@ -1,19 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cofy84srvcg64"]
+[gd_scene load_steps=4 format=3 uid="uid://cofy84srvcg64"]
 
 [ext_resource type="Texture2D" uid="uid://bp2joo7ii7iul" path="res://icon.svg" id="1_1pwkg"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_ihjul"]
-[ext_resource type="PackedScene" uid="uid://bb6jlp1s4wgr4" path="res://Player/player_whip.tscn" id="2_2iccw"]
-[ext_resource type="PackedScene" uid="uid://brqrdjrtdy8yv" path="res://Particles/leaf_effect.tscn" id="3_g8lxm"]
-[ext_resource type="PackedScene" uid="uid://j6eyepvctgku" path="res://Particles/dash_particles.tscn" id="4_wgyqp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcp3o"]
 size = Vector2(26, 40)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ihjul")
-playerWhip = ExtResource("2_2iccw")
-leafParticles = ExtResource("3_g8lxm")
-dashParticles = ExtResource("4_wgyqp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.21875, 0.320313)

@@ -31,9 +31,9 @@ var attackDirection : Vector2 = Vector2(0,0)
 var isAttacking : bool = false
 
 # Whip packed scene
-@export var playerWhip : PackedScene
-@export var leafParticles : PackedScene
-@export var dashParticles : PackedScene
+@export var playerWhip : PackedScene = preload("res://Player/player_whip.tscn")
+@export var leafParticles : PackedScene = preload("res://Particles/leaf_effect.tscn")
+@export var dashParticles : PackedScene = preload("res://Particles/dash_particles.tscn")
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
