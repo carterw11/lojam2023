@@ -1,27 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdkbtuoibvjdf"]
+[gd_scene load_steps=7 format=3 uid="uid://cdkbtuoibvjdf"]
 
 [ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_g7tvp"]
-[ext_resource type="Texture2D" uid="uid://cjpu5w1vfxi40" path="res://Images/TestAssets/enemy.png" id="2_wnadx"]
+[ext_resource type="Texture2D" uid="uid://d2veesggavclb" path="res://Images/Assets/Shooter/Shooter_Default.png" id="2_p7f1j"]
+[ext_resource type="Texture2D" uid="uid://dhpgbln084af3" path="res://Images/Assets/Shooter/Shooter_Inbetween.png" id="3_4d4xj"]
+[ext_resource type="Texture2D" uid="uid://lbch2pspegk4" path="res://Images/Assets/Shooter/Shooter_Recoil_Last_Frame.png" id="4_0cymg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vkuro"]
+animations = [{
+"frames": [{
+"duration": 12.0,
+"texture": ExtResource("2_p7f1j")
+}, {
+"duration": 4.0,
+"texture": ExtResource("3_4d4xj")
+}, {
+"duration": 14.0,
+"texture": ExtResource("4_0cymg")
+}],
+"loop": true,
+"name": &"shooting",
+"speed": 60.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wm0cc"]
-size = Vector2(14, 31)
+size = Vector2(89, 98)
 
 [node name="ShootingEnemy" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_g7tvp")
 canShoot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_wnadx")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -16)
+sprite_frames = SubResource("SpriteFrames_vkuro")
+animation = &"shooting"
+frame_progress = 0.847651
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_wm0cc")
 
 [node name="MarkerRight" type="Marker2D" parent="."]
-position = Vector2(11, 0)
+position = Vector2(50, -25)
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
-position = Vector2(-11, 0)
+position = Vector2(-50, -25)
 
 [node name="CycleTimer" type="Timer" parent="."]
 

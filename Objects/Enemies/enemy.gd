@@ -12,12 +12,15 @@ extends CharacterBody2D
 
 @onready var cycleTimer = $CycleTimer
 @onready var shootingTimer = $ShootingTimer
+@onready var sprite = $AnimatedSprite2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
+	if direction.x == 1:
+		sprite.set_flip_h(true)
 	cycleTimer.start(cycleTime)
 	
 	if canShoot:
@@ -46,12 +49,16 @@ func _physics_process(delta):
 	
 func ChangeDirection():
 	direction *= -1
+	sprite.set_flip_h(!sprite.flip_h)
 	cycleTimer.start(cycleTime)
 
 func _on_cycle_timer_timeout():
 	ChangeDirection()
 
 func _on_shooting_timer_timeout():
+	
+	sprite.play("shooting")
+	await get_tree().create_timer(0.2).timeout
 	var bullet = Bullet.instantiate()
 	owner.add_child(bullet)
 	if direction.x == 1:
@@ -60,6 +67,10 @@ func _on_shooting_timer_timeout():
 		bullet.transform = $MarkerLeft.global_transform
 	bullet.direction = direction
 	shootingTimer.start(shootingTime)
+	await get_tree().create_timer(0.3).timeout
+	sprite.stop()
+	
+	
 	
 func death():
 	queue_free()

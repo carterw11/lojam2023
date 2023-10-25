@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl1wtn70tuifb"]
+[gd_scene load_steps=7 format=3 uid="uid://cl1wtn70tuifb"]
 
 [ext_resource type="Texture2D" uid="uid://bp2joo7ii7iul" path="res://icon.svg" id="1_3qxdh"]
 [ext_resource type="PackedScene" uid="uid://cofy84srvcg64" path="res://Player/player.tscn" id="2_xg3gb"]
 [ext_resource type="PackedScene" uid="uid://br88pvgncorgq" path="res://Objects/grapple_point.tscn" id="3_l34gq"]
-[ext_resource type="PackedScene" uid="uid://bedrcig7u20f" path="res://Objects/Spikes/spikes.tscn" id="4_obtob"]
-[ext_resource type="PackedScene" uid="uid://cof6flpt4eg2p" path="res://Objects/Enemies/WalkingEnemy.tscn" id="5_wk2nc"]
+[ext_resource type="PackedScene" uid="uid://cdkbtuoibvjdf" path="res://Objects/Enemies/ShootingEnemy.tscn" id="5_oqvxn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wjdl8"]
 texture = ExtResource("1_3qxdh")
@@ -359,8 +358,5 @@ position = Vector2(756, 206)
 [node name="Node2D5" parent="." instance=ExtResource("3_l34gq")]
 position = Vector2(267, 464)
 
-[node name="Spike" parent="." instance=ExtResource("4_obtob")]
-position = Vector2(426, 504)
-
-[node name="WalkingEnemy" parent="." instance=ExtResource("5_wk2nc")]
-position = Vector2(872, 443)
+[node name="ShootingEnemy" parent="." instance=ExtResource("5_oqvxn")]
+position = Vector2(817, 439)
