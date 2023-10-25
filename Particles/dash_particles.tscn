@@ -25,6 +25,7 @@ color_ramp = SubResource("GradientTexture1D_rapvg")
 script = ExtResource("1_t0o61")
 
 [node name="TrailEffect" type="GPUParticles2D" parent="."]
+emitting = false
 amount = 10
 process_material = SubResource("ParticleProcessMaterial_yte64")
 texture = ExtResource("1_yomhy")

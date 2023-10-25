@@ -14,7 +14,7 @@ extends CharacterBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var direction : int = 1
+var direction : Vector2 = Vector2(1, 0)
 
 func _ready():
 	cycleTimer.start(cycleTime)
@@ -31,12 +31,18 @@ func _physics_process(delta):
 		ChangeDirection()
 		
 	if canMove:
-		velocity.x = direction * speed
+		velocity.x = direction.x * speed
 
 	move_and_slide()
 	
+	var collision = move_and_collide(velocity * delta)
+	if collision != null:
+		var body = collision.get_collider()
+		if body.is_in_group("Player"):
+			body.death()
+	
 func ChangeDirection():
-	direction *= -1
+	direction.x *= -1
 	cycleTimer.start(cycleTime)
 
 func _on_cycle_timer_timeout():
@@ -45,7 +51,7 @@ func _on_cycle_timer_timeout():
 func _on_shooting_timer_timeout():
 	var bullet = Bullet.instantiate()
 	owner.add_child(bullet)
-	if direction == 1:
+	if direction.x == 1:
 		bullet.transform = $MarkerRight.global_transform
 	else:
 		bullet.transform = $MarkerLeft.global_transform

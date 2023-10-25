@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcp3o"]
 size = Vector2(26, 40)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ihjul")
 playerWhip = ExtResource("2_2iccw")
 leafParticles = ExtResource("3_g8lxm")

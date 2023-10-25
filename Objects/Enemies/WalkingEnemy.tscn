@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wm0cc"]
 size = Vector2(14, 31)
 
-[node name="WalkingEnemy" type="CharacterBody2D"]
+[node name="WalkingEnemy" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_xohox")
 canShoot = true
 

@@ -364,3 +364,4 @@ position = Vector2(426, 504)
 
 [node name="WalkingEnemy" parent="." instance=ExtResource("5_wk2nc")]
 position = Vector2(870, 494)
+canShoot = false
