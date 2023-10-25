@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxesb3q6gwtdm"]
+[gd_scene load_steps=9 format=3 uid="uid://deypyqrvgfyo3"]
 
 [ext_resource type="Texture2D" uid="uid://bp2joo7ii7iul" path="res://icon.svg" id="1_1uwbg"]
 [ext_resource type="PackedScene" uid="uid://br88pvgncorgq" path="res://Objects/grapple_point.tscn" id="2_lc0r0"]
@@ -303,10 +303,11 @@ one_way_collision = true
 one_way_collision_margin = 9.2
 
 [node name="WalkingEnemy" parent="." instance=ExtResource("4_crv84")]
-position = Vector2(269, 556)
+position = Vector2(356, 554)
+direction = Vector2(1, 1)
 
 [node name="WalkingEnemy2" parent="." instance=ExtResource("4_crv84")]
-position = Vector2(948, 267)
+position = Vector2(948, 242)
 
 [node name="WalkingEnemy3" parent="." instance=ExtResource("4_crv84")]
 position = Vector2(371, 172)

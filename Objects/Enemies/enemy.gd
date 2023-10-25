@@ -8,13 +8,14 @@ extends CharacterBody2D
 @export var isFlying : bool = false
 @export var canShoot : bool = false
 @export var Bullet : PackedScene = preload("res://Objects/Bullet/bullet.tscn")
+@export var direction : Vector2 = Vector2(1, 0)
 
 @onready var cycleTimer = $CycleTimer
 @onready var shootingTimer = $ShootingTimer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var direction : Vector2 = Vector2(1, 0)
+
 
 func _ready():
 	cycleTimer.start(cycleTime)
@@ -27,11 +28,13 @@ func _physics_process(delta):
 	if not is_on_floor() and !isFlying:
 		velocity.y += gravity * delta
 	
-	if is_on_wall():
+	if is_on_wall() or ((is_on_floor() or is_on_ceiling()) && isFlying):
 		ChangeDirection()
 		
 	if canMove:
-		velocity = direction * speed
+		if isFlying:
+			velocity.y = direction.y * speed
+		velocity.x = direction.x * speed
 
 	move_and_slide()
 	
@@ -42,7 +45,7 @@ func _physics_process(delta):
 			body.death()
 	
 func ChangeDirection():
-	direction.x *= -1
+	direction *= -1
 	cycleTimer.start(cycleTime)
 
 func _on_cycle_timer_timeout():
