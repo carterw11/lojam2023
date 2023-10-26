@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7ea6lj1b8go4"]
+
+[ext_resource type="Script" path="res://Objects/Bullet/bullet.gd" id="1_wjatt"]
+[ext_resource type="Texture2D" uid="uid://b8t4apvp6kv08" path="res://Images/Assets/Shooter/Projectile.png" id="2_qfp33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5lq1"]
+size = Vector2(10.9999, 39)
+
+[node name="bullet" type="Area2D"]
+script = ExtResource("1_wjatt")
+graceTime = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qfp33")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_d5lq1")
+
+[node name="KillTimer" type="Timer" parent="."]
+
+[node name="Grace" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="timeout" from="Grace" to="." method="_on_grace_timeout"]

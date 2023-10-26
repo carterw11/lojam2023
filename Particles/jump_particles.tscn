@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctdpifhmysy8n"]
+
+[sub_resource type="Gradient" id="Gradient_x7bdh"]
+offsets = PackedFloat32Array(0, 0.459259, 0.822222)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nl7xq"]
+gradient = SubResource("Gradient_x7bdh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e2su6"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 150.0
+damping_max = 150.0
+color_ramp = SubResource("GradientTexture1D_nl7xq")
+
+[node name="Jump Particles" type="GPUParticles2D"]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_e2su6")
