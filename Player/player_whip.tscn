@@ -8,6 +8,8 @@ radius = 3.0
 height = 46.0
 
 [node name="Player Whip" type="Area2D" groups=["playerAttack"]]
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_3u8ul")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

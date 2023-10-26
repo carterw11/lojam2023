@@ -1134,7 +1134,7 @@ sources/6 = SubResource("TileSetAtlasSource_0wo7q")
 sources/7 = SubResource("TileSetAtlasSource_p23gc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jiseb"]
-size = Vector2(280, 24.0011)
+size = Vector2(280, 55.0005)
 
 [node name="Level1" type="Node2D"]
 
@@ -1180,15 +1180,16 @@ rotation = 1.5708
 nextLevel = "res://Levels/Level2.tscn"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Portal"]
-position = Vector2(-54.9999, -0.999831)
+position = Vector2(-13.0001, -19)
 shape = SubResource("RectangleShape2D_jiseb")
-
-[node name="Background(1920x1080Px)" type="Sprite2D" parent="."]
-show_behind_parent = true
-position = Vector2(960, 546)
-texture = ExtResource("5_qoma6")
-metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 544)
 zoom = Vector2(0.6, 0.6)
+
+[node name="Background(1920x1080Px)" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(966, 547)
+scale = Vector2(1.04479, 1.08333)
+texture = ExtResource("5_qoma6")
+metadata/_edit_lock_ = true
