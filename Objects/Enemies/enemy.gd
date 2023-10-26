@@ -41,12 +41,7 @@ func _physics_process(delta):
 		velocity.x = direction.x * speed
 
 	move_and_slide()
-	
-	var collision = move_and_collide(velocity * delta)
-	if collision != null:
-		var body = collision.get_collider()
-		if body.is_in_group("Player"):
-			body.death()
+
 	
 func ChangeDirection():
 	direction *= -1
@@ -78,3 +73,8 @@ func death():
 	get_parent().add_child(particle)
 	particle.position = position
 	queue_free()
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("Player"):
+		body.death()
