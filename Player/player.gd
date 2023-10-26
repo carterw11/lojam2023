@@ -57,7 +57,8 @@ func _physics_process(delta):
 	elif is_on_floor():
 		canJump = true
 		canDoubleJump = true
-		canDash = true
+		if(!isDashing):
+			canDash = true
 		grappleMomentum -= grappleMomentumDecay * 2 * delta # Increases grapple momentum decay when on the ground, friction :D
 		if(grappleMomentum <= 0):
 			grappleMomentum = 0
