@@ -1,33 +1,33 @@
 extends CharacterBody2D
 
 # Speed and input variables
-@export var moveSpeed : float = 300.0
+@export var moveSpeed : float = 600.0
 var inputDirection : Vector2 = Vector2(0,0)
 var faceDirection : float = 1.0
 
 # Jump variables
-@export var jumpVelocity : float = -400.0
+@export var jumpVelocity : float = -800.0
 var canJump : bool = true
 var canDoubleJump : bool = true
 @export var doubleJumpUnlocked = true
 var hasLanded = false
 
 # Dash variables
-@export var dashSpeed : float = 725.0
+@export var dashSpeed : float = 1500.0
 var canDash : bool = true
 var isDashing : bool = false
 @export var dashUnlocked = true
 
 # Grapple variables
-@export var grappleVelocity : float = 800.0
+@export var grappleVelocity : float = 1600.0
 var grappleMomentum : float
-@export var grappleMomentumDecay : float = 800.0 # This uses delta, is per second
+@export var grappleMomentumDecay : float = 1600.0 # This uses delta, is per second
 var grappleMomentumDirection : Vector2 = Vector2(0,0)
 var isGrappling : bool = false
 @export var whipUnlocked = true
 
 # Attack variables
-@export var attackPointOffest : float = 20.0
+@export var attackPointOffest : float = 64.0
 var attackDirection : Vector2 = Vector2(0,0)
 var isAttacking : bool = false
 
@@ -77,7 +77,7 @@ func _physics_process(delta):
 			var landParticles = groundLandParticles.instantiate()
 			get_parent().add_child(landParticles)
 			landParticles.position = position
-			landParticles.position.y += 16
+			landParticles.position.y += 128
 			hasLanded = true
 		canJump = true
 		canDoubleJump = true
@@ -122,7 +122,7 @@ func _physics_process(delta):
 			canDoubleJump = false
 			var particle = leafParticles.instantiate()
 			add_child(particle)
-			particle.position.y += 20
+			particle.position.y += 128
 
 		# Used for controller deadzone, horizontal input was going through when left stick was pushed up?
 		if abs(inputDirection.x) > 0.35:
@@ -151,6 +151,7 @@ func _physics_process(delta):
 		particle = leafParticles.instantiate()
 		add_child(particle)
 		particle.rotation_degrees = 90 + (180/PI) * atan2(inputDirection.y,inputDirection.x)
+		particle.position += 128 * Vector2(inputDirection.x,inputDirection.y).normalized()
 		dashTimer.start()	
 
 	move_and_slide()
