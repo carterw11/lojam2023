@@ -1,16 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://66q78oweiamn"]
+[gd_scene load_steps=2 format=3 uid="uid://66q78oweiamn"]
 
 [ext_resource type="Script" path="res://Objects/Portal/Portal.gd" id="1_dowux"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_21wop"]
-size = Vector2(154, 20)
 
 [node name="Portal" type="Area2D"]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_dowux")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_21wop")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
