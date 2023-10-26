@@ -31,8 +31,13 @@ var isGrappling : bool = false
 var attackDirection : Vector2 = Vector2(0,0)
 var isAttacking : bool = false
 
+# Variable that will stop user from controlling the player, can be used for death and cutscenes
+@export var playerHasControl = true
+
 # Whip packed scene
 @export var playerWhip : PackedScene = preload("res://Player/player_whip.tscn")
+
+# Particle packed scenes
 @export var leafParticles : PackedScene = preload("res://Particles/leaf_effect.tscn")
 @export var dashParticles : PackedScene = preload("res://Particles/dash_particles.tscn")
 @export var groundLandParticles : PackedScene = preload("res://Particles/ground_landing_particles.tscn")
@@ -106,7 +111,7 @@ func _physics_process(delta):
 		faceDirection = -1.0
 	
 	# Allows jumping when not in a dash
-	if !isDashing:
+	if(!isDashing and playerHasControl):
 		# Jump
 		if Input.is_action_just_pressed("jump") and canJump:
 			velocity.y = jumpVelocity
@@ -133,7 +138,7 @@ func _physics_process(delta):
 		grappleMomentum = 0
 	
 	# Dash mechanic, takes precedence over all other movement
-	if Input.is_action_just_pressed("dash") and canDash and dashUnlocked:
+	if Input.is_action_just_pressed("dash") and canDash and dashUnlocked and playerHasControl:
 		canDash = false
 		isDashing = true
 		grappleMomentum = 0
@@ -153,7 +158,7 @@ func _physics_process(delta):
 func _process(_delta):
 	
 	# Can only attack once at a time
-	if(!isAttacking and whipUnlocked and !isDashing):
+	if(!isAttacking and whipUnlocked and !isDashing and playerHasControl):
 		
 		# Controller and mouse attack handled differently
 		# Controller using directional input
