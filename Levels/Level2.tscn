@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxesb3q6gwtdm"]
+[gd_scene load_steps=9 format=3 uid="uid://deypyqrvgfyo3"]
 
 [ext_resource type="Texture2D" uid="uid://bp2joo7ii7iul" path="res://icon.svg" id="1_1uwbg"]
 [ext_resource type="PackedScene" uid="uid://br88pvgncorgq" path="res://Objects/grapple_point.tscn" id="2_lc0r0"]
 [ext_resource type="PackedScene" uid="uid://cofy84srvcg64" path="res://Player/player.tscn" id="3_35ag3"]
-[ext_resource type="PackedScene" path="res://Objects/Enemies/ShootingEnemy.tscn" id="5_s6ndr"]
+[ext_resource type="PackedScene" uid="uid://cdkbtuoibvjdf" path="res://Objects/Enemies/ShootingEnemy.tscn" id="5_s6ndr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v3tcp"]
 
