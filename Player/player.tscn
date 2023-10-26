@@ -1,7 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cofy84srvcg64"]
+[gd_scene load_steps=6 format=3 uid="uid://cofy84srvcg64"]
 
 [ext_resource type="Texture2D" uid="uid://bp2joo7ii7iul" path="res://icon.svg" id="1_1pwkg"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_ihjul"]
+[ext_resource type="PackedScene" uid="uid://dslnwcy0jj7as" path="res://Particles/ground_walk_particles.tscn" id="3_skkou"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2kwap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1pwkg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcp3o"]
 size = Vector2(26, 40)
@@ -9,9 +21,9 @@ size = Vector2(26, 40)
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ihjul")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.21875, 0.320313)
-texture = ExtResource("1_1pwkg")
+sprite_frames = SubResource("SpriteFrames_2kwap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mcp3o")
@@ -25,6 +37,9 @@ wait_time = 0.1
 one_shot = true
 
 [node name="AttackPoint" type="Marker2D" parent="."]
+
+[node name="Ground Walk Particles" parent="." instance=ExtResource("3_skkou")]
+position = Vector2(0, 20)
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

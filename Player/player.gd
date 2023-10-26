@@ -10,6 +10,7 @@ var faceDirection : float = 1.0
 var canJump : bool = true
 var canDoubleJump : bool = true
 @export var doubleJumpUnlocked = true
+var hasLanded = false
 
 # Dash variables
 @export var dashSpeed : float = 725.0
@@ -34,6 +35,7 @@ var isAttacking : bool = false
 @export var playerWhip : PackedScene = preload("res://Player/player_whip.tscn")
 @export var leafParticles : PackedScene = preload("res://Particles/leaf_effect.tscn")
 @export var dashParticles : PackedScene = preload("res://Particles/dash_particles.tscn")
+@export var groundLandParticles : PackedScene = preload("res://Particles/ground_landing_particles.tscn")
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -41,11 +43,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var dashTimer = $DashTimer
 @onready var coyoteTimer = $CoyoteTimer
 @onready var attackPoint = $AttackPoint
+@onready var groundWalkParticles = $"Ground Walk Particles"
 
 func _physics_process(delta):
 
 	# Starts coyote time
 	if not is_on_floor():
+		groundWalkParticles.emitting = false
+		hasLanded = false
 		if(canJump and coyoteTimer.is_stopped()):
 			coyoteTimer.start()
 	
@@ -55,6 +60,20 @@ func _physics_process(delta):
 	
 	# Resets variables when you touch the ground
 	elif is_on_floor():
+		if(velocity.x > 0):
+			groundWalkParticles.emitting = true
+			groundWalkParticles.process_material.direction.x = -1
+		elif(velocity.x < 0):
+			groundWalkParticles.emitting = true
+			groundWalkParticles.process_material.direction.x = 1
+		else :
+			groundWalkParticles.emitting = false
+		if(!hasLanded):
+			var landParticles = groundLandParticles.instantiate()
+			get_parent().add_child(landParticles)
+			landParticles.position = position
+			landParticles.position.y += 16
+			hasLanded = true
 		canJump = true
 		canDoubleJump = true
 		if(!isDashing):

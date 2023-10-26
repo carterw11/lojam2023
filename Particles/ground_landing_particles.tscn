@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwcbx38npmfo7"]
+
+[ext_resource type="Script" path="res://Particles/ground_landing_particles.gd" id="1_wcv7r"]
+
+[sub_resource type="Gradient" id="Gradient_7r8in"]
+offsets = PackedFloat32Array(0, 0.503704, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6wrki"]
+gradient = SubResource("Gradient_7r8in")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ikf30"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 0, 0)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 70.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color_ramp = SubResource("GradientTexture1D_6wrki")
+
+[node name="Ground landing particles" type="GPUParticles2D"]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_ikf30")
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("1_wcv7r")
