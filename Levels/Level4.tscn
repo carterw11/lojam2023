@@ -27,7 +27,7 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_civ1s")]
 z_index = 2
-position = Vector2(139, 193)
+position = Vector2(107, 443)
 
 [node name="Area2D" parent="." instance=ExtResource("3_la2pj")]
 position = Vector2(242, 1040)
@@ -71,5 +71,5 @@ position = Vector2(1639, 502)
 position = Vector2(2083, 38)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portal"]
-position = Vector2(-235, -35)
+position = Vector2(-246, -39)
 shape = SubResource("RectangleShape2D_cfrnx")
