@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct33r2yuldr3i"]
+
+[ext_resource type="Texture2D" uid="uid://i4x12i5ijbni" path="res://Images/Assets/Background(1920x1080px).png" id="1_td3uo"]
+[ext_resource type="PackedScene" uid="uid://d2456kjkf742j" path="res://Levels/tile_map.tscn" id="2_fy4ya"]
+
+[node name="Cutscene Test" type="Node2D"]
+
+[node name="Background(1920x1080Px)" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(966, 547)
+scale = Vector2(1.04479, 1.08333)
+texture = ExtResource("1_td3uo")
+metadata/_edit_lock_ = true
+
+[node name="TileMap" parent="." instance=ExtResource("2_fy4ya")]
