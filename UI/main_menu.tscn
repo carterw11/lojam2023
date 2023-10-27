@@ -98,5 +98,9 @@ offset_bottom = 65.0
 text = "Quit"
 label_settings = SubResource("LabelSettings_uenrn")
 
+[connection signal="mouse_entered" from="ButtonsContainer/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="pressed" from="ButtonsContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="ButtonsContainer/Settings" to="." method="_on_settings_mouse_entered"]
 [connection signal="pressed" from="ButtonsContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="ButtonsContainer/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="pressed" from="ButtonsContainer/Quit" to="." method="_on_quit_pressed"]
