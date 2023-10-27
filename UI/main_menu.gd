@@ -1,9 +1,10 @@
 extends Control
 
 
-
-func _on_play_pressed():
-	pass # Replace with function body.
+#func _on_play_pressed():
+	#MusicController.play_startFX()
+	#await get_tree().create_timer(0.85).timeout
+	#get_tree().change_scene_to_file("res://world.tscn") #***change later when cutscene is done
 
 
 func _on_settings_pressed():
