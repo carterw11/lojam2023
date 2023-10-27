@@ -9,8 +9,8 @@ var hover_sound = load("res://Sounds/Hover Over Button.wav")
 	#$"main-theme".play()
 	
 func play_startFX():
-	$"start-sound".stream = start_sound
-	$"start-sound".play()
+	$"Start-SFX".stream = start_sound
+	$"Start-SFX".play()
 func play_hoverFX():
-	$"hover-sound".stream = hover_sound
-	$"hover-sound".play()
+	$"Hover-SFX".stream = hover_sound
+	$"Hover-SFX".play()
