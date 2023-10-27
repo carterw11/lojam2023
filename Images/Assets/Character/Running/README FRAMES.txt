@@ -1,0 +1,12 @@
+60fps
+Running1 -> 4 frames (4)
+Running2 -> 4 frames (8)
+Running3 -> 2 frames (10)
+Running4 -> 3 frames (13)
+Running5 -> 3 frames (16)
+Running6 -> 3 frames (19)
+Running7 -> 4 frames (23)
+Running8 -> 4 frames (27)
+Running9 -> 2 frames (29)
+Running10 -> 3 frames (32)
+Running11 -> 3 frames (35)

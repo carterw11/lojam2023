@@ -1,0 +1,4 @@
+60fps
+ATK1 - 5 frames (5)
+ATK2 - 3 frames (8)
+ATK3 - 11 frames (19) (Add the vine attack here in the direction cone shape around the arm pivot point)(Flip for sides)

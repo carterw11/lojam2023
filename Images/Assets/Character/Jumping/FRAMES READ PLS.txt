@@ -1,0 +1,12 @@
+60fps
+Jump1 - 7 frames (7)
+jump2 - 10 frames (17)
+jump3 - 10 frames (27)
+Jump4 - 10 frames (37)(Hold while Falling) (Set attack punch pivot here) (IF double jump go back to jump2 from here)
+Jump5 - 10 frames (47)
+Jump6 - 10 frames (57)
+Jump7 - 7 frames (64)
+
+Notes:
+go from idle only when still
+if moving go from moving frame to jump 1 
