@@ -89,7 +89,7 @@ func _physics_process(delta):
 			var landParticles = groundLandParticles.instantiate()
 			get_parent().add_child(landParticles)
 			landParticles.position = position
-			landParticles.position.y += 128
+			landParticles.position.y += 100
 			hasLanded = true
 		canJump = true
 		canDoubleJump = true
