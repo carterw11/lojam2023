@@ -59,8 +59,6 @@ func _physics_process(delta):
 	if not is_on_floor():
 		if(hasLanded and canJump): # Hopefully the last hack in this project
 			sprite.stop()
-		if(!sprite.is_playing()):
-			sprite.play("Falling")
 		groundWalkParticles.emitting = false
 		hasLanded = false
 		if(canJump and coyoteTimer.is_stopped()):
@@ -68,6 +66,8 @@ func _physics_process(delta):
 	
 	# Applies gravity outside of a dash
 	if not is_on_floor() and !isDashing:
+		if(!sprite.is_playing()):
+			sprite.play("Falling")
 		velocity.y += gravity * delta
 	
 	# Resets variables when you touch the ground
@@ -131,7 +131,7 @@ func _physics_process(delta):
 		if abs(inputDirection.x) > 0.35:
 			# Moves character
 			velocity.x = ((inputDirection.x/abs(inputDirection.x)) * moveSpeed) + (grappleMomentumDirection.x * grappleMomentum)
-			if(is_on_floor()):
+			if(is_on_floor() and !isAttacking):
 				sprite.play("Run")
 		else:
 			# Prevents momentum, still feels a little weird when grappling
@@ -161,6 +161,7 @@ func _physics_process(delta):
 	
 	# Dash mechanic, takes precedence over all other movement
 	if Input.is_action_just_pressed("dash") and canDash and dashUnlocked and playerHasControl:
+		sprite.play("Dash")
 		canDash = false
 		isDashing = true
 		grappleMomentum = 0
@@ -170,6 +171,8 @@ func _physics_process(delta):
 			velocity = dashSpeed * Vector2(faceDirection,0.0)
 		var particle = dashParticles.instantiate()
 		add_child(particle)
+		if(velocity.x < 0):
+			particle.trailParticles.scale = Vector2(-1,1)
 		particle = leafParticles.instantiate()
 		add_child(particle)
 		particle.rotation_degrees = 90 + (180/PI) * atan2(inputDirection.y,inputDirection.x)
@@ -219,13 +222,18 @@ func _physics_process(delta):
 			sprite.stop()
 			sprite.play("Attack")
 			attackDelay.start()
-			
+	
 	move_and_slide()
 	
 # Die
 func death():
-	playerHasControl = false
-	deathTimer.start()
+	if(deathTimer.is_stopped()):
+		sprite.rotation_degrees = 90
+		sprite.play("Death")
+		velocity.x = 0
+		sprite.position.y += 70
+		playerHasControl = false
+		deathTimer.start()
 
 # Timer to stay dashing only for the dedicated amount of time
 func _on_dash_timer_timeout():
