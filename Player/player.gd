@@ -47,13 +47,16 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Child nodes
 @onready var dashTimer = $DashTimer
 @onready var coyoteTimer = $CoyoteTimer
+@onready var deathTimer = $DeathTimer
 @onready var attackPoint = $AttackPoint
+@onready var sprite = $Sprite2D
 @onready var groundWalkParticles = $"Ground Walk Particles"
 
 func _physics_process(delta):
 
 	# Starts coyote time
 	if not is_on_floor():
+		sprite.play("Falling")
 		groundWalkParticles.emitting = false
 		hasLanded = false
 		if(canJump and coyoteTimer.is_stopped()):
@@ -73,7 +76,11 @@ func _physics_process(delta):
 			groundWalkParticles.process_material.direction.x = 1
 		else :
 			groundWalkParticles.emitting = false
+			if(!sprite.is_playing()):
+				sprite.play("Idle")
 		if(!hasLanded):
+			if(!sprite.is_playing()):
+				sprite.play("Landing")
 			var landParticles = groundLandParticles.instantiate()
 			get_parent().add_child(landParticles)
 			landParticles.position = position
@@ -107,17 +114,21 @@ func _physics_process(delta):
 	# Changes facing direction
 	if(velocity.x > 0):
 		faceDirection = 1.0
+		sprite.flip_h = false
 	elif (velocity.x < 0):
 		faceDirection = -1.0
+		sprite.flip_h = true
 	
 	# Allows jumping when not in a dash
 	if(!isDashing and playerHasControl):
 		# Jump
 		if Input.is_action_just_pressed("jump") and canJump:
+			sprite.play("Jump")
 			velocity.y = jumpVelocity
 			canJump = false
 		# Double Jump
 		elif Input.is_action_just_pressed("jump") and canDoubleJump and doubleJumpUnlocked:
+			sprite.play("Jump")
 			velocity.y = jumpVelocity
 			canDoubleJump = false
 			var particle = leafParticles.instantiate()
@@ -128,8 +139,11 @@ func _physics_process(delta):
 		if abs(inputDirection.x) > 0.35:
 			# Moves character
 			velocity.x = ((inputDirection.x/abs(inputDirection.x)) * moveSpeed) + (grappleMomentumDirection.x * grappleMomentum)
+			if(is_on_floor() and !sprite.is_playing()):
+				sprite.play("Run")
 		else:
 			# Prevents momentum, still feels a little weird when grappling
+			sprite.stop()
 			velocity.x = 0 + (grappleMomentumDirection.x * grappleMomentum)
 	
 	# Reduces grappling momentum
@@ -192,7 +206,8 @@ func _process(_delta):
 
 # Die
 func death():
-	self.queue_free()
+	playerHasControl = false
+	deathTimer.start()
 
 # Timer to stay dashing only for the dedicated amount of time
 func _on_dash_timer_timeout():
@@ -202,3 +217,7 @@ func _on_dash_timer_timeout():
 # Coyote time timer
 func _on_coyote_timer_timeout():
 	canJump = false
+
+
+func _on_death_timer_timeout():
+	Transition.changeScene(get_parent().scene_file_path)
