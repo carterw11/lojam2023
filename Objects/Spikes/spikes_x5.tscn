@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6bwq28be8uwx"]
+[gd_scene load_steps=4 format=3 uid="uid://btj6kjkfvaw2i"]
 
 [ext_resource type="Script" path="res://Objects/Spikes/spikes.gd" id="1_tj6n4"]
 [ext_resource type="Texture2D" uid="uid://djdlv14gwg8wb" path="res://Images/Assets/thorn.png" id="2_b0oph"]
