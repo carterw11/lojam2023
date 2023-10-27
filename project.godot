@@ -17,11 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-<<<<<<< Updated upstream
 Transition="*res://Objects/Transition/transition.tscn"
-=======
-MusicController="*res://Singleton/music_controller.tscn"
->>>>>>> Stashed changes
 
 [display]
 
