@@ -1,18 +1,10 @@
-extends Sprite2D
+extends CanvasLayer
 
-@onready var animationPlayer = $AnimationPlayer
-@export var animation = "Slide"
+@onready var transition = $AnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	var img = get_viewport().get_texture().get_data()
-	img.flip_v()
-	var screenshot = ImageTexture.new()
-	screenshot.create_from_image(img)
-	texture = screenshot
-	animationPlayer.play(animation)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func changeScene (target: String) -> void:
+	transition.play("disolve")
+	await transition.animation_finished
+	get_tree().change_scene_to_file(target)
+	transition.play_backwards("disolve")
+	

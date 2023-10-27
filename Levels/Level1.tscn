@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bml3loy4ekno1"]
 
-[ext_resource type="PackedScene" uid="uid://d2456kjkf742j" path="res://Levels/tile_map.tscn" id="1_m8d32"]
+[ext_resource type="PackedScene" path="res://Levels/tile_map.tscn" id="1_m8d32"]
 [ext_resource type="PackedScene" uid="uid://cofy84srvcg64" path="res://Player/player.tscn" id="2_73ql2"]
 [ext_resource type="PackedScene" uid="uid://br88pvgncorgq" path="res://Objects/grapple_point.tscn" id="3_x17s2"]
 [ext_resource type="PackedScene" uid="uid://66q78oweiamn" path="res://Objects/Portal/Portal.tscn" id="4_j1bfm"]
@@ -32,7 +32,7 @@ rotation = 1.5708
 nextLevel = "res://Levels/Level2.tscn"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Portal"]
-position = Vector2(-13.0001, -19)
+position = Vector2(-31.0001, -16.9999)
 shape = SubResource("RectangleShape2D_jiseb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
