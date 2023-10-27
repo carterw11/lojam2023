@@ -1,6 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwcbx38npmfo7"]
+[gd_scene load_steps=7 format=3 uid="uid://bwcbx38npmfo7"]
 
+[ext_resource type="Texture2D" uid="uid://bd8jish47uqq1" path="res://Images/Assets/Dirt.png" id="1_jt0sv"]
 [ext_resource type="Script" path="res://Particles/ground_landing_particles.gd" id="1_wcv7r"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0ao0k"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 8
+particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_7r8in"]
 offsets = PackedFloat32Array(0, 0.503704, 1)
@@ -15,17 +22,20 @@ emission_box_extents = Vector3(10, 0, 0)
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 30.0
-gravity = Vector3(0, 98, 0)
-initial_velocity_min = 40.0
-initial_velocity_max = 70.0
+gravity = Vector3(0, 196, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 140.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 color_ramp = SubResource("GradientTexture1D_6wrki")
+anim_offset_max = 1.0
 
 [node name="Ground landing particles" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_0ao0k")
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_ikf30")
+texture = ExtResource("1_jt0sv")
 one_shot = true
 explosiveness = 1.0
 script = ExtResource("1_wcv7r")
