@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlcsd0tl3lawi"]
+
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_scg2b"]
+[ext_resource type="Texture2D" uid="uid://dvcap8s61heig" path="res://Images/Assets/Main Menu Splash/Full Splash.png" id="1_u1m2o"]
+[ext_resource type="FontFile" uid="uid://d44j4bpixl3m" path="res://Fonts/CustomFont.ttf" id="2_ait2b"]
+[ext_resource type="Texture2D" uid="uid://52cvcrbirsox" path="res://Images/Assets/Main Menu Splash/MainButtonNormal.png" id="3_xeiqx"]
+[ext_resource type="Texture2D" uid="uid://bj4tcebmu6xuq" path="res://Images/Assets/Main Menu Splash/MainButtonHover.png" id="4_u6cf0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7by4c"]
+font = ExtResource("2_ait2b")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_ctdcb"]
+font = ExtResource("2_ait2b")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2un82"]
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uenrn"]
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_scg2b")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(577.5, 324)
+scale = Vector2(0.601563, 0.601852)
+texture = ExtResource("1_u1m2o")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 38.0
+offset_right = 480.0
+offset_bottom = 88.0
+text = "Up The Beanstalk"
+label_settings = SubResource("LabelSettings_7by4c")
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 119.0
+offset_right = 424.0
+offset_bottom = 569.0
+
+[node name="Play" type="TextureButton" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+texture_normal = ExtResource("3_xeiqx")
+texture_hover = ExtResource("4_u6cf0")
+
+[node name="Play" type="Label" parent="ButtonsContainer/Play"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 20.0
+offset_right = 217.0
+offset_bottom = 68.0
+text = "Play"
+label_settings = SubResource("LabelSettings_ctdcb")
+
+[node name="Settings" type="TextureButton" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+texture_normal = ExtResource("3_xeiqx")
+texture_hover = ExtResource("4_u6cf0")
+
+[node name="Settings" type="Label" parent="ButtonsContainer/Settings"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 19.0
+offset_right = 274.0
+offset_bottom = 67.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_2un82")
+
+[node name="Quit" type="TextureButton" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+texture_normal = ExtResource("3_xeiqx")
+texture_hover = ExtResource("4_u6cf0")
+
+[node name="Quit" type="Label" parent="ButtonsContainer/Quit"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 17.0
+offset_right = 218.0
+offset_bottom = 65.0
+text = "Quit"
+label_settings = SubResource("LabelSettings_uenrn")
+
+[connection signal="mouse_entered" from="ButtonsContainer/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="pressed" from="ButtonsContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="ButtonsContainer/Settings" to="." method="_on_settings_mouse_entered"]
+[connection signal="pressed" from="ButtonsContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="ButtonsContainer/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="pressed" from="ButtonsContainer/Quit" to="." method="_on_quit_pressed"]
