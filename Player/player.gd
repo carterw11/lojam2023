@@ -27,7 +27,7 @@ var isGrappling : bool = false
 @export var whipUnlocked = true
 
 # Attack variables
-@export var attackPointOffest : float = 64.0
+@export var attackPointOffest : float = 1.0
 var attackDirection : Vector2 = Vector2(0,0)
 var isAttacking : bool = false
 
@@ -48,15 +48,19 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var dashTimer = $DashTimer
 @onready var coyoteTimer = $CoyoteTimer
 @onready var deathTimer = $DeathTimer
+@onready var attackDelay = $AttackDelayTimer
 @onready var attackPoint = $AttackPoint
 @onready var sprite = $Sprite2D
 @onready var groundWalkParticles = $"Ground Walk Particles"
 
 func _physics_process(delta):
-
+	
 	# Starts coyote time
 	if not is_on_floor():
-		sprite.play("Falling")
+		if(hasLanded and canJump): # Hopefully the last hack in this project
+			sprite.stop()
+		if(!sprite.is_playing()):
+			sprite.play("Falling")
 		groundWalkParticles.emitting = false
 		hasLanded = false
 		if(canJump and coyoteTimer.is_stopped()):
@@ -76,11 +80,12 @@ func _physics_process(delta):
 			groundWalkParticles.process_material.direction.x = 1
 		else :
 			groundWalkParticles.emitting = false
-			if(!sprite.is_playing()):
+			if(!isAttacking):
+				sprite.stop()
 				sprite.play("Idle")
 		if(!hasLanded):
-			if(!sprite.is_playing()):
-				sprite.play("Landing")
+			sprite.stop()
+			sprite.play("Landing")
 			var landParticles = groundLandParticles.instantiate()
 			get_parent().add_child(landParticles)
 			landParticles.position = position
@@ -121,30 +126,33 @@ func _physics_process(delta):
 	
 	# Allows jumping when not in a dash
 	if(!isDashing and playerHasControl):
+
+		# Used for controller deadzone, horizontal input was going through when left stick was pushed up?
+		if abs(inputDirection.x) > 0.35:
+			# Moves character
+			velocity.x = ((inputDirection.x/abs(inputDirection.x)) * moveSpeed) + (grappleMomentumDirection.x * grappleMomentum)
+			if(is_on_floor()):
+				sprite.play("Run")
+		else:
+			# Prevents momentum, still feels a little weird when grappling
+			#sprite.stop()
+			velocity.x = 0 + (grappleMomentumDirection.x * grappleMomentum)
+		
 		# Jump
 		if Input.is_action_just_pressed("jump") and canJump:
+			sprite.stop()
 			sprite.play("Jump")
 			velocity.y = jumpVelocity
 			canJump = false
 		# Double Jump
 		elif Input.is_action_just_pressed("jump") and canDoubleJump and doubleJumpUnlocked:
+			sprite.stop()
 			sprite.play("Jump")
 			velocity.y = jumpVelocity
 			canDoubleJump = false
 			var particle = leafParticles.instantiate()
 			add_child(particle)
 			particle.position.y += 128
-
-		# Used for controller deadzone, horizontal input was going through when left stick was pushed up?
-		if abs(inputDirection.x) > 0.35:
-			# Moves character
-			velocity.x = ((inputDirection.x/abs(inputDirection.x)) * moveSpeed) + (grappleMomentumDirection.x * grappleMomentum)
-			if(is_on_floor() and !sprite.is_playing()):
-				sprite.play("Run")
-		else:
-			# Prevents momentum, still feels a little weird when grappling
-			sprite.stop()
-			velocity.x = 0 + (grappleMomentumDirection.x * grappleMomentum)
 	
 	# Reduces grappling momentum
 	grappleMomentum -= grappleMomentumDecay * delta
@@ -168,11 +176,7 @@ func _physics_process(delta):
 		particle.position += 128 * Vector2(inputDirection.x,inputDirection.y).normalized()
 		dashTimer.start()	
 
-	move_and_slide()
-
-func _process(_delta):
-	
-	# Can only attack once at a time
+		# Can only attack once at a time
 	if(!isAttacking and whipUnlocked and !isDashing and playerHasControl):
 		
 		# Controller and mouse attack handled differently
@@ -181,29 +185,43 @@ func _process(_delta):
 			isAttacking = true
 			if(inputDirection != Vector2.ZERO):
 				attackDirection = inputDirection
+				if(attackDirection.x >= 0):
+					attackPoint.position.x = -20
+					sprite.flip_h = false
+				elif(attackDirection.x < 0):
+					attackPoint.position.x = 20
+					sprite.flip_h = true
 			else:
 				attackDirection = Vector2(faceDirection,0.0)
-			attackPoint.position = Vector2.ZERO + (attackDirection*attackPointOffest)
-			var whip = playerWhip.instantiate()
-			add_child(whip)
-			whip.transform = attackPoint.transform
-			whip.rotation_degrees = 90 + (180/PI) * atan2(attackPoint.position.y,attackPoint.position.x)
+				if(attackDirection.x >= 0):
+					attackPoint.position.x = -20
+					sprite.flip_h = false
+				elif(attackDirection.x < 0):
+					attackPoint.position.x = 20
+					sprite.flip_h = true
+			sprite.stop()
+			sprite.play("Attack")
+			attackDelay.start()
 		
 		# Mouse using mouse cursor position
 		elif(Input.is_action_just_pressed("attack_mouse")):
 			isAttacking = true
 			attackDirection = (get_global_mouse_position()-position).normalized()
 			# Switches attack direction based on where you click
-			if(attackDirection.x > 0):
+			if(attackDirection.x >= 0):
 				faceDirection = 1
+				sprite.flip_h = false
+				attackPoint.position.x = -20
 			elif(attackDirection.x < 0):
 				faceDirection = -1
-			attackPoint.position = Vector2.ZERO + (attackDirection*attackPointOffest)
-			var whip = playerWhip.instantiate()
-			add_child(whip)
-			whip.transform = attackPoint.transform
-			whip.rotation_degrees = 90 + (180/PI) * atan2(attackPoint.position.y,attackPoint.position.x)
-
+				sprite.flip_h = true
+				attackPoint.position.x = 20
+			sprite.stop()
+			sprite.play("Attack")
+			attackDelay.start()
+			
+	move_and_slide()
+	
 # Die
 func death():
 	playerHasControl = false
@@ -221,3 +239,10 @@ func _on_coyote_timer_timeout():
 
 func _on_death_timer_timeout():
 	Transition.changeScene(get_parent().scene_file_path)
+
+
+func _on_attack_delay_timer_timeout():
+	var whip = playerWhip.instantiate()
+	add_child(whip)
+	whip.transform = attackPoint.transform
+	whip.rotation_degrees = 90 + (180/PI) * atan2(attackDirection.y,attackDirection.x)
