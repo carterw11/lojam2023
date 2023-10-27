@@ -8,7 +8,7 @@ extends Node2D
 var wizardIsFlying : bool  = false
 @onready var playerWalkOutTimer = $PlayerWalkOut
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(wizardIsFlying):
 		wizard.position.y -= 15
 
@@ -34,4 +34,4 @@ func _on_wizard_fly_offscreen_timeout():
 
 
 func _on_player_walk_out_timeout():
-	get_tree().change_scene_to_file("res://Levels/Level2.tscn")
+	Transition.changeScene("res://Levels/Level2.tscn")
