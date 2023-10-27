@@ -1,4 +1,34 @@
-[gd_scene format=3 uid="uid://bgl1j7nbmc8vn"]
+[gd_scene load_steps=13 format=3 uid="uid://bgl1j7nbmc8vn"]
+
+[ext_resource type="Script" path="res://UI/settings.gd" id="1_r8lyf"]
+[ext_resource type="Texture2D" uid="uid://dgtkvvj1y08lo" path="res://Images/Assets/Main Menu Splash/BlurredFullSplash.png" id="1_xv2na"]
+[ext_resource type="Texture2D" uid="uid://52cvcrbirsox" path="res://Images/Assets/Main Menu Splash/MainButtonNormal.png" id="2_ai80c"]
+[ext_resource type="Texture2D" uid="uid://bj4tcebmu6xuq" path="res://Images/Assets/Main Menu Splash/MainButtonHover.png" id="3_8nwte"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hqh82"]
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_t0pgv"]
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_d8we8"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_scrjn"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_sfpct"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_kqpu5"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_enku2"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_lx81v"]
+font_size = 25
+font_color = Color(0, 0, 0, 1)
 
 [node name="settings" type="Control"]
 layout_mode = 3
@@ -7,3 +37,131 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_r8lyf")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 322.5)
+scale = Vector2(0.602083, 0.599074)
+texture = ExtResource("1_xv2na")
+
+[node name="VIDEO LABEL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 127.0
+offset_right = 157.0
+offset_bottom = 165.0
+text = "VIDEO"
+label_settings = SubResource("LabelSettings_hqh82")
+
+[node name="AUDIO LABEL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 631.0
+offset_top = 115.0
+offset_right = 768.0
+offset_bottom = 153.0
+text = "AUDIO"
+label_settings = SubResource("LabelSettings_t0pgv")
+
+[node name="SETTINGS" type="Label" parent="."]
+layout_mode = 0
+offset_left = 297.0
+offset_top = 39.0
+offset_right = 531.0
+offset_bottom = 82.0
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_d8we8")
+
+[node name="VideoContainer" type="HBoxContainer" parent="."]
+offset_left = 43.0
+offset_top = 160.0
+offset_right = 392.0
+offset_bottom = 536.0
+
+[node name="Labels" type="VBoxContainer" parent="VideoContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="Label" parent="VideoContainer/Labels"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Fullscreen"
+label_settings = SubResource("LabelSettings_scrjn")
+
+[node name="Borderless" type="Label" parent="VideoContainer/Labels"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Borderless"
+label_settings = SubResource("LabelSettings_sfpct")
+
+[node name="Windowed" type="Label" parent="VideoContainer/Labels"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Windowed"
+label_settings = SubResource("LabelSettings_kqpu5")
+
+[node name="Checks" type="VBoxContainer" parent="VideoContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="CheckBox" parent="VideoContainer/Checks"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Borderless" type="CheckBox" parent="VideoContainer/Checks"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Windowed" type="CheckBox" parent="VideoContainer/Checks"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="AudioContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 638.0
+offset_top = 134.0
+offset_right = 1023.0
+offset_bottom = 321.0
+
+[node name="Label" type="VBoxContainer" parent="AudioContainer"]
+layout_mode = 2
+
+[node name="Master Volume" type="Label" parent="AudioContainer/Label"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_enku2")
+
+[node name="Slider" type="VBoxContainer" parent="AudioContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Master" type="HSlider" parent="AudioContainer/Slider"]
+layout_mode = 2
+min_value = -60.0
+max_value = 0.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="ReturnButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 799.0
+offset_top = 556.0
+offset_right = 1127.0
+offset_bottom = 631.0
+texture_normal = ExtResource("2_ai80c")
+texture_hover = ExtResource("3_8nwte")
+
+[node name="Return to Main Menu" type="Label" parent="ReturnButton"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 27.0
+offset_right = 318.0
+offset_bottom = 55.0
+text = "Return to Main Menu"
+label_settings = SubResource("LabelSettings_lx81v")
+
+[connection signal="toggled" from="VideoContainer/Checks/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="VideoContainer/Checks/Borderless" to="." method="_on_borderless_toggled"]
+[connection signal="toggled" from="VideoContainer/Checks/Windowed" to="." method="_on_windowed_toggled"]
+[connection signal="value_changed" from="AudioContainer/Slider/Master" to="." method="_on_master_value_changed"]
+[connection signal="mouse_entered" from="ReturnButton" to="." method="_on_return_button_mouse_entered"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

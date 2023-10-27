@@ -9,8 +9,6 @@ extends Area2D
 func _physics_process(_delta):
 	if(whipLifespanTimer.is_stopped()):
 		whipLifespanTimer.start(whipTime)
-	else:
-		self.collisionShape.position.y -= 13
 
 func _on_whip_lifespan_timeout():
 	get_parent().isAttacking = false
