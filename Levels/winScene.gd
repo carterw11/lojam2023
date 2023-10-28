@@ -5,6 +5,9 @@ extends Node2D
 func _ready():
 	player.sprite.play("Idle")
 
+func _physics_process(delta):
+	if Input.is_action_just_pressed("jump"):
+		Transition.changeScene("res://UI/main_menu.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
