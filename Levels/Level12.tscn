@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6eljmpmv567v"]
+[gd_scene load_steps=9 format=3 uid="uid://ctingdk0211jk"]
 
 [ext_resource type="Texture2D" uid="uid://i4x12i5ijbni" path="res://Images/Assets/Background(1920x1080px).png" id="1_dk0wc"]
 [ext_resource type="PackedScene" uid="uid://cofy84srvcg64" path="res://Player/player.tscn" id="2_2lt6b"]
