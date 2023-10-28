@@ -131,7 +131,7 @@ func _physics_process(delta):
 		if abs(inputDirection.x) > 0.35:
 			# Moves character
 			velocity.x = ((inputDirection.x/abs(inputDirection.x)) * moveSpeed) + (grappleMomentumDirection.x * grappleMomentum)
-			if(is_on_floor()):
+			if(is_on_floor() and !isAttacking):
 				sprite.play("Run")
 		else:
 			# Prevents momentum, still feels a little weird when grappling
@@ -231,6 +231,12 @@ func _physics_process(delta):
 	
 # Die
 func death():
+	isAttacking = false
+	velocity.x = 0
+	sprite.stop()
+	sprite.play("Death")
+	sprite.position.y += 70
+	sprite.rotation_degrees = 90
 	playerHasControl = false
 	deathTimer.start()
 
