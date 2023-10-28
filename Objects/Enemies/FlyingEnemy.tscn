@@ -1,20 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://emvnx2858rvw"]
+[gd_scene load_steps=7 format=3 uid="uid://emvnx2858rvw"]
 
 [ext_resource type="Script" path="res://Objects/Enemies/enemy.gd" id="1_qag57"]
-[ext_resource type="Texture2D" uid="uid://cjpu5w1vfxi40" path="res://Images/TestAssets/enemy.png" id="2_whhl5"]
+[ext_resource type="Texture2D" uid="uid://b5ihp4ekk3b2s" path="res://Images/Assets/Flying Enemy/Flying1.png" id="2_yyc5b"]
+[ext_resource type="Texture2D" uid="uid://o46bdq0jlllk" path="res://Images/Assets/Flying Enemy/Flying2.png" id="3_cred8"]
+[ext_resource type="Texture2D" uid="uid://bj7nt3mvo3ve1" path="res://Images/Assets/Flying Enemy/Flying3.png" id="4_m4xtp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wm0cc"]
-size = Vector2(14, 31)
+size = Vector2(33, 64.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wdoi"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_whhl5")
+"duration": 8.0,
+"texture": ExtResource("2_yyc5b")
+}, {
+"duration": 6.0,
+"texture": ExtResource("3_cred8")
+}, {
+"duration": 8.0,
+"texture": ExtResource("4_m4xtp")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 60.0
 }]
 
 [node name="ShootingEnemy" type="CharacterBody2D" groups=["Enemy"]]
@@ -28,14 +36,16 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 0.5)
+position = Vector2(-1, 3)
 shape = SubResource("RectangleShape2D_wm0cc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-14, 0)
 sprite_frames = SubResource("SpriteFrames_6wdoi")
+frame_progress = 0.298906
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(-1, 3)
 shape = SubResource("RectangleShape2D_wm0cc")
 
 [node name="MarkerRight" type="Marker2D" parent="."]

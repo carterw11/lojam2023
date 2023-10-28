@@ -23,7 +23,8 @@ func _ready():
 	if direction.x == 1:
 		sprite.set_flip_h(true)
 	cycleTimer.start(cycleTime)
-	
+	if isFlying:
+		sprite.play()
 	if canShoot:
 		shootingTimer.start(shootingTime)
 

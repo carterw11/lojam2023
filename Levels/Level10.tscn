@@ -60,6 +60,7 @@ rotation = -1.5708
 
 [node name="Portal" parent="." instance=ExtResource("7_nwjsc")]
 position = Vector2(1730, -5)
+nextLevel = "res://Levels/Level11.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portal"]
 position = Vector2(0.5, 15)
