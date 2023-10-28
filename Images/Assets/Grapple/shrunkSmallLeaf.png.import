@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o2mrbn60lydr"
-path="res://.godot/imported/Grapple Point.png-20b28d9602bba368296edd6fee4c028c.ctex"
+uid="uid://d2pveoqeau4v4"
+path="res://.godot/imported/shrunkSmallLeaf.png-44fcad754c3900259221d795ff31aaef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Assets/Grapple/Grapple Point.png"
-dest_files=["res://.godot/imported/Grapple Point.png-20b28d9602bba368296edd6fee4c028c.ctex"]
+source_file="res://Images/Assets/Grapple/shrunkSmallLeaf.png"
+dest_files=["res://.godot/imported/shrunkSmallLeaf.png-44fcad754c3900259221d795ff31aaef.ctex"]
 
 [params]
 

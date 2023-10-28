@@ -59,7 +59,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		if(hasLanded and canJump): # Hopefully the last hack in this project
 			sprite.stop()
-		if(!sprite.is_playing()):
+		if(!sprite.is_playing() and playerHasControl):
 			sprite.play("Falling")
 		groundWalkParticles.emitting = false
 		hasLanded = false
@@ -80,12 +80,13 @@ func _physics_process(delta):
 			groundWalkParticles.process_material.direction.x = 1
 		else :
 			groundWalkParticles.emitting = false
-			if(!isAttacking):
+			if(!isAttacking and playerHasControl):
 				sprite.stop()
 				sprite.play("Idle")
 		if(!hasLanded):
 			sprite.stop()
-			sprite.play("Landing")
+			if(playerHasControl):
+				sprite.play("Landing")
 			var landParticles = groundLandParticles.instantiate()
 			get_parent().add_child(landParticles)
 			landParticles.position = position
@@ -131,7 +132,7 @@ func _physics_process(delta):
 		if abs(inputDirection.x) > 0.35:
 			# Moves character
 			velocity.x = ((inputDirection.x/abs(inputDirection.x)) * moveSpeed) + (grappleMomentumDirection.x * grappleMomentum)
-			if(is_on_floor()):
+			if(is_on_floor() and !isAttacking):
 				sprite.play("Run")
 		else:
 			# Prevents momentum, still feels a little weird when grappling
@@ -152,7 +153,7 @@ func _physics_process(delta):
 			canDoubleJump = false
 			var particle = leafParticles.instantiate()
 			add_child(particle)
-			particle.position.y += 128
+			particle.position.y += 60
 	
 	# Reduces grappling momentum
 	grappleMomentum -= grappleMomentumDecay * delta
@@ -170,10 +171,17 @@ func _physics_process(delta):
 			velocity = dashSpeed * Vector2(faceDirection,0.0)
 		var particle = dashParticles.instantiate()
 		add_child(particle)
+		if(faceDirection > 0):
+			particle.trailParticles.emitting = true
+		else:
+			particle.flippedTrailParticles.emitting = true
 		particle = leafParticles.instantiate()
 		add_child(particle)
-		particle.rotation_degrees = 90 + (180/PI) * atan2(inputDirection.y,inputDirection.x)
-		particle.position += 128 * Vector2(inputDirection.x,inputDirection.y).normalized()
+		if(inputDirection != Vector2.ZERO):
+			particle.rotation_degrees = 90 + (180/PI) * atan2(inputDirection.y,inputDirection.x)
+		else:
+			particle.rotation_degrees = 90 * faceDirection
+		particle.position += 80 * Vector2(inputDirection.x,inputDirection.y).normalized()
 		dashTimer.start()	
 
 		# Can only attack once at a time
@@ -224,6 +232,12 @@ func _physics_process(delta):
 	
 # Die
 func death():
+	isAttacking = false
+	velocity.x = 0
+	sprite.stop()
+	sprite.play("Death")
+	sprite.position.y += 70
+	sprite.rotation_degrees = 90
 	playerHasControl = false
 	deathTimer.start()
 

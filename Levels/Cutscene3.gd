@@ -61,4 +61,4 @@ func _on_wizard_fly_offscreen_timeout():
 #test
 
 func _on_player_walk_out_timeout():
-	Transition.changeScene("res://Levels/Level2.tscn")
+	Transition.changeScene("res://Levels/Level9.tscn")

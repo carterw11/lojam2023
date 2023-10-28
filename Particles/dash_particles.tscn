@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://j6eyepvctgku"]
+[gd_scene load_steps=9 format=3 uid="uid://j6eyepvctgku"]
 
 [ext_resource type="Script" path="res://Particles/dash_particles.gd" id="1_t0o61"]
-[ext_resource type="Texture2D" uid="uid://bp2joo7ii7iul" path="res://icon.svg" id="1_yomhy"]
+[ext_resource type="Texture2D" uid="uid://1d4xl1l8wyhp" path="res://Images/Assets/Character/Running/Running7.png" id="2_6t11x"]
 [ext_resource type="Script" path="res://Particles/TrailEffect.gd" id="3_35nvx"]
+[ext_resource type="Texture2D" uid="uid://n5m4tied4rkn" path="res://Images/Assets/Character/Running/Running7Flipped.png" id="4_3bkbi"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ijkdg"]
 
 [sub_resource type="Gradient" id="Gradient_0krt6"]
 offsets = PackedFloat32Array(0, 0.644444)
@@ -17,22 +20,34 @@ direction = Vector3(0, 0, 0)
 gravity = Vector3(0, 0, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-scale_min = 0.22
-scale_max = 0.22
 color_ramp = SubResource("GradientTexture1D_rapvg")
 
 [node name="Dash Particles" type="Node2D"]
 script = ExtResource("1_t0o61")
 
 [node name="TrailEffect" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ijkdg")
 emitting = false
 amount = 10
 process_material = SubResource("ParticleProcessMaterial_yte64")
-texture = ExtResource("1_yomhy")
+texture = ExtResource("2_6t11x")
 lifetime = 0.2
 one_shot = true
 script = ExtResource("3_35nvx")
 
 [node name="LifetimeTimer" type="Timer" parent="TrailEffect"]
 
+[node name="TrailEffectFlipped" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ijkdg")
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_yte64")
+texture = ExtResource("4_3bkbi")
+lifetime = 0.2
+one_shot = true
+script = ExtResource("3_35nvx")
+
+[node name="LifetimeTimer" type="Timer" parent="TrailEffectFlipped"]
+
 [connection signal="timeout" from="TrailEffect/LifetimeTimer" to="TrailEffect" method="_on_lifetime_timer_timeout"]
+[connection signal="timeout" from="TrailEffectFlipped/LifetimeTimer" to="TrailEffectFlipped" method="_on_lifetime_timer_timeout"]

@@ -1,9 +1,7 @@
 extends Node2D
 
 @onready var trailParticles = $TrailEffect
-
-func _ready():
-	trailParticles.emitting = true
+@onready var flippedTrailParticles = $TrailEffectFlipped
 
 func _process(_delta):
 	if(get_child_count() == 0):

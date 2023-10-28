@@ -40,10 +40,21 @@ animations = [{
 "name": &"Attack",
 "speed": 60.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_qir6k")
+}],
+"loop": false,
 "name": &"Dash",
-"speed": 5.0
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2vk3q")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 60.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -137,9 +148,7 @@ script = ExtResource("1_ihjul")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2kwap")
-animation = &"Attack"
-frame = 2
-frame_progress = 1.0
+animation = &"Run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mcp3o")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o2mrbn60lydr"
-path="res://.godot/imported/Grapple Point.png-20b28d9602bba368296edd6fee4c028c.ctex"
+uid="uid://caaendt4hqrno"
+path="res://.godot/imported/VineSegment.png-937d713bb897207f474711a2d4b44bf7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Assets/Grapple/Grapple Point.png"
-dest_files=["res://.godot/imported/Grapple Point.png-20b28d9602bba368296edd6fee4c028c.ctex"]
+source_file="res://Images/Assets/Character/Attack/VineSegment.png"
+dest_files=["res://.godot/imported/VineSegment.png-937d713bb897207f474711a2d4b44bf7.ctex"]
 
 [params]
 
