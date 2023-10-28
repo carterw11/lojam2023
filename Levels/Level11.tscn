@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccfip4cwcjt3v"]
+[gd_scene load_steps=9 format=3 uid="uid://ccfip4cwcjt3v"]
 
 [ext_resource type="Texture2D" uid="uid://i4x12i5ijbni" path="res://Images/Assets/Background(1920x1080px).png" id="1_o767u"]
 [ext_resource type="PackedScene" uid="uid://cofy84srvcg64" path="res://Player/player.tscn" id="2_0etxc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://br88pvgncorgq" path="res://Objects/grapple_point.tscn" id="4_r586e"]
 [ext_resource type="PackedScene" uid="uid://btj6kjkfvaw2i" path="res://Objects/Spikes/spikes_x5.tscn" id="5_5uodm"]
 [ext_resource type="PackedScene" uid="uid://66q78oweiamn" path="res://Objects/Portal/Portal.tscn" id="6_2ulce"]
+[ext_resource type="PackedScene" uid="uid://emvnx2858rvw" path="res://Objects/Enemies/FlyingEnemy.tscn" id="7_geg03"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pftgv"]
 size = Vector2(619, 50)
@@ -78,3 +79,8 @@ nextLevel = "res://Levels/Level12.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portal"]
 position = Vector2(62.5, 15)
 shape = SubResource("RectangleShape2D_pftgv")
+
+[node name="ShootingEnemy" parent="." instance=ExtResource("7_geg03")]
+position = Vector2(898, 174)
+cycleTime = 5.0
+direction = Vector2(0, 1)
