@@ -1229,9 +1229,6 @@ layer_1/tile_data = PackedInt32Array(3735562, 6, 6, 3801098, 6, 7, 3604491, 6554
 [node name="Grapple Point" parent="." instance=ExtResource("2_lc0r0")]
 position = Vector2(1639, 521)
 
-[node name="Grapple Point2" parent="." instance=ExtResource("2_lc0r0")]
-position = Vector2(1078, 66)
-
 [node name="Player" parent="." instance=ExtResource("3_35ag3")]
 z_index = 4
 position = Vector2(116, 174)
