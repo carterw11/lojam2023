@@ -1,10 +1,14 @@
 extends Control
 
+func _ready():
+	MusicController.play_menu()
+	
 
 func _on_play_pressed():
 	MusicController.play_startFX()
 	await get_tree().create_timer(0.85).timeout
-	Transition.changeScene("res://Levels/cutscene_test.tscn") #***change later when cutscene is done
+	MusicController.stop_menu()
+	Transition.changeScene("res://Levels/cutscene_test.tscn")
 
 
 func _on_settings_pressed():
