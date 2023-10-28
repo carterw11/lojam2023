@@ -27,7 +27,7 @@ whipUnlocked = false
 [node name="Portal" parent="." instance=ExtResource("4_j1bfm")]
 position = Vector2(-13, 83)
 rotation = 1.5708
-nextLevel = "res://Levels/Level2.tscn"
+nextLevel = "res://Levels/cutscene_test.tscn"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Portal"]
 position = Vector2(51.9932, -1922)

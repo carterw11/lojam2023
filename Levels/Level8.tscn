@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drps7nxnr23ox"]
+[gd_scene load_steps=10 format=3 uid="uid://bcs7p5qigadto"]
 
 [ext_resource type="PackedScene" uid="uid://br88pvgncorgq" path="res://Objects/grapple_point.tscn" id="1_a1iuv"]
 [ext_resource type="PackedScene" uid="uid://d2456kjkf742j" path="res://Levels/tile_map.tscn" id="2_jaine"]
@@ -32,7 +32,7 @@ dashUnlocked = false
 [node name="Portal" parent="." instance=ExtResource("4_1h8do")]
 position = Vector2(-15, 284)
 rotation = 1.5708
-nextLevel = "res://Levels/Level2.tscn"
+nextLevel = "res://Levels/Cutscene3.tscn"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Portal"]
 position = Vector2(-163.757, -1965)
