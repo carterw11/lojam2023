@@ -54,6 +54,8 @@ func play_proj():
 func _on_main_theme_finished():
 	play_theme()
 	
+func stop_main():
+	$"Main-Theme".stop()
 
 func stop_menu():
 	$"Menu-Theme".stop()
