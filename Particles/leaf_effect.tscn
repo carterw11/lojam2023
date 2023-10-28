@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://brqrdjrtdy8yv"]
 
-[ext_resource type="Texture2D" uid="uid://4gn8vwsmg81c" path="res://Images/TestAssets/leaf_test.png" id="1_5cbhd"]
+[ext_resource type="Texture2D" uid="uid://d2pveoqeau4v4" path="res://Images/Assets/Grapple/shrunkSmallLeaf.png" id="1_vhksc"]
 
 [sub_resource type="Gradient" id="Gradient_1v7rd"]
 offsets = PackedFloat32Array(0, 0.62963, 1)
@@ -14,11 +14,13 @@ particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 60.0
 gravity = Vector3(0, 98, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 140.0
+initial_velocity_min = 40.0
+initial_velocity_max = 280.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 angle_max = 360.0
+scale_min = 2.0
+scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_2g4fa")
 turbulence_enabled = true
 turbulence_noise_scale = 1.84
@@ -38,7 +40,7 @@ func _process(_delta):
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_77xue")
-texture = ExtResource("1_5cbhd")
+texture = ExtResource("1_vhksc")
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0

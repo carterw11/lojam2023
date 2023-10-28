@@ -152,7 +152,7 @@ func _physics_process(delta):
 			canDoubleJump = false
 			var particle = leafParticles.instantiate()
 			add_child(particle)
-			particle.position.y += 128
+			particle.position.y += 60
 	
 	# Reduces grappling momentum
 	grappleMomentum -= grappleMomentumDecay * delta
@@ -176,8 +176,11 @@ func _physics_process(delta):
 			particle.flippedTrailParticles.emitting = true
 		particle = leafParticles.instantiate()
 		add_child(particle)
-		particle.rotation_degrees = 90 + (180/PI) * atan2(inputDirection.y,inputDirection.x)
-		particle.position += 128 * Vector2(inputDirection.x,inputDirection.y).normalized()
+		if(inputDirection != Vector2.ZERO):
+			particle.rotation_degrees = 90 + (180/PI) * atan2(inputDirection.y,inputDirection.x)
+		else:
+			particle.rotation_degrees = 90 * faceDirection
+		particle.position += 80 * Vector2(inputDirection.x,inputDirection.y).normalized()
 		dashTimer.start()	
 
 		# Can only attack once at a time
