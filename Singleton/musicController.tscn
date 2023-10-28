@@ -1,12 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl7ubjokv8bkl"]
+[gd_scene load_steps=3 format=3 uid="uid://cl7ubjokv8bkl"]
 
 [ext_resource type="Script" path="res://Singleton/musicController.gd" id="1_s25xu"]
+[ext_resource type="AudioStream" uid="uid://bixtokbi6juoa" path="res://Sounds/Main Theme Master.wav" id="2_ogxpc"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_s25xu")
 
 [node name="Main-Theme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ogxpc")
 
 [node name="Hover-SFX" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Start-SFX" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="finished" from="Main-Theme" to="." method="_on_main_theme_finished"]
