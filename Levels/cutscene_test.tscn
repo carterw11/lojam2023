@@ -1,15 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://ct33r2yuldr3i"]
+[gd_scene load_steps=13 format=3 uid="uid://ct33r2yuldr3i"]
 
 [ext_resource type="Script" path="res://Levels/cutscene_test.gd" id="1_hkdqp"]
 [ext_resource type="Texture2D" uid="uid://i4x12i5ijbni" path="res://Images/Assets/Background(1920x1080px).png" id="1_td3uo"]
-[ext_resource type="PackedScene" path="res://Objects/Beanstalk.tscn" id="2_fjya0"]
+[ext_resource type="PackedScene" uid="uid://bta40f4xs3ij3" path="res://Objects/Beanstalk.tscn" id="2_fjya0"]
 [ext_resource type="PackedScene" uid="uid://d2456kjkf742j" path="res://Levels/tile_map.tscn" id="2_fy4ya"]
 [ext_resource type="PackedScene" uid="uid://cofy84srvcg64" path="res://Player/player.tscn" id="3_d7n8u"]
 [ext_resource type="Texture2D" uid="uid://n034g1i2y3ut" path="res://Images/Assets/Wizard(28 frames between)(118px apart)/Wizard_Idle_Anim(300x300px).png" id="4_bt8kj"]
 [ext_resource type="Texture2D" uid="uid://450ialxwyeg7" path="res://Images/Assets/Wizard(28 frames between)(118px apart)/Wizard_Rest(300x300px).png" id="5_u8pw3"]
 [ext_resource type="Script" path="res://Levels/Wizard.gd" id="6_tyf07"]
-[ext_resource type="Texture2D" uid="uid://bvhfw5tdiijt8" path="res://Images/Assets/Speech/Char.png" id="9_dj4wh"]
-[ext_resource type="Texture2D" uid="uid://bw5yempwfbrql" path="res://Images/Assets/Speech/Wizard.png" id="10_13rgp"]
+[ext_resource type="Texture2D" uid="uid://b1hwbgeo5jm65" path="res://Images/Assets/Speech/Char.png" id="9_dj4wh"]
+[ext_resource type="Texture2D" uid="uid://ba6egbg5n2f2v" path="res://Images/Assets/Speech/Wizard.png" id="10_13rgp"]
+[ext_resource type="Texture2D" uid="uid://b8t4apvp6kv08" path="res://Images/Assets/Shooter/Projectile.png" id="11_kmr0k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xfaui"]
 animations = [{
@@ -46,6 +47,7 @@ zoom = Vector2(0.6, 0.6)
 position = Vector2(866, 956)
 
 [node name="Player" parent="." instance=ExtResource("3_d7n8u")]
+z_index = 2
 position = Vector2(-527, 889)
 playerHasControl = false
 
@@ -65,6 +67,11 @@ wait_time = 2.0
 one_shot = true
 
 [node name="BeanThrowTime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="WizardTalkTime" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="WizardFlyOffscreen" type="Timer" parent="."]
@@ -84,19 +91,34 @@ offset_left = -64.0
 offset_top = 26.0
 offset_right = -56.0
 offset_bottom = 43.0
+text = "Is that a wizard????"
+uppercase = true
 
 [node name="WizardText" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(1532, 452)
 texture = ExtResource("10_13rgp")
 
 [node name="Text" type="Label" parent="WizardText"]
-offset_left = -64.0
+offset_left = -130.0
 offset_top = 26.0
-offset_right = -56.0
-offset_bottom = 43.0
+offset_right = 351.0
+offset_bottom = 52.0
+text = "Eat the Bean! 
+You'll be able to grapple 
+and help me!"
+uppercase = true
+
+[node name="bean" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="bean"]
+position = Vector2(909.25, 842.875)
+scale = Vector2(1.54878, 2.28845)
+texture = ExtResource("11_kmr0k")
 
 [connection signal="timeout" from="ReadyTimer" to="." method="_on_ready_timer_timeout"]
 [connection signal="timeout" from="PlayerWalkIn" to="." method="_on_player_walk_in_timeout"]
 [connection signal="timeout" from="BeanThrowTime" to="." method="_on_bean_throw_time_timeout"]
+[connection signal="timeout" from="WizardTalkTime" to="." method="_on_wizard_talk_time_timeout"]
 [connection signal="timeout" from="WizardFlyOffscreen" to="." method="_on_wizard_fly_offscreen_timeout"]
 [connection signal="timeout" from="PlayerWalkOut" to="." method="_on_player_walk_out_timeout"]
