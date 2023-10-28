@@ -109,6 +109,7 @@ text = "Eat the Bean!
 You'll be able to grapple 
 and help me!"
 uppercase = true
+metadata/_edit_use_anchors_ = true
 
 [node name="bean" type="CharacterBody2D" parent="."]
 

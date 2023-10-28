@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmixjn8w6ffts"]
+[gd_scene load_steps=13 format=3 uid="uid://bmixjn8w6ffts"]
 
+[ext_resource type="Script" path="res://Levels/Cutscene2.gd" id="1_ik6ep"]
 [ext_resource type="Texture2D" uid="uid://i4x12i5ijbni" path="res://Images/Assets/Background(1920x1080px).png" id="2_4ehyd"]
 [ext_resource type="PackedScene" uid="uid://d2456kjkf742j" path="res://Levels/tile_map.tscn" id="3_lqfcn"]
 [ext_resource type="PackedScene" uid="uid://bta40f4xs3ij3" path="res://Objects/Beanstalk.tscn" id="4_l4ok7"]
@@ -26,6 +27,7 @@ animations = [{
 }]
 
 [node name="Cutscene2" type="Node2D"]
+script = ExtResource("1_ik6ep")
 
 [node name="Background(1920x1080Px)" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -58,6 +60,7 @@ script = ExtResource("8_016tq")
 [node name="ReadyTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+autostart = true
 
 [node name="PlayerWalkIn" type="Timer" parent="."]
 wait_time = 2.0
@@ -114,3 +117,10 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(909.25, 842.875)
 scale = Vector2(1.54878, 2.28845)
 texture = ExtResource("11_r3bdm")
+
+[connection signal="timeout" from="ReadyTimer" to="." method="_on_ready_timer_timeout"]
+[connection signal="timeout" from="PlayerWalkIn" to="." method="_on_player_walk_in_timeout"]
+[connection signal="timeout" from="BeanThrowTime" to="." method="_on_bean_throw_time_timeout"]
+[connection signal="timeout" from="WizardTalkTime" to="." method="_on_wizard_talk_time_timeout"]
+[connection signal="timeout" from="WizardFlyOffscreen" to="." method="_on_wizard_fly_offscreen_timeout"]
+[connection signal="timeout" from="PlayerWalkOut" to="." method="_on_player_walk_out_timeout"]
