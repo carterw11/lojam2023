@@ -171,8 +171,10 @@ func _physics_process(delta):
 			velocity = dashSpeed * Vector2(faceDirection,0.0)
 		var particle = dashParticles.instantiate()
 		add_child(particle)
-		if(velocity.x < 0):
-			particle.trailParticles.scale = Vector2(-1,1)
+		if(faceDirection > 0):
+			particle.trailParticles.emitting = true
+		else:
+			particle.flippedTrailParticles.emitting = true
 		particle = leafParticles.instantiate()
 		add_child(particle)
 		particle.rotation_degrees = 90 + (180/PI) * atan2(inputDirection.y,inputDirection.x)

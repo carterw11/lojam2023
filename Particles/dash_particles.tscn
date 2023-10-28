@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://j6eyepvctgku"]
+[gd_scene load_steps=9 format=3 uid="uid://j6eyepvctgku"]
 
 [ext_resource type="Script" path="res://Particles/dash_particles.gd" id="1_t0o61"]
 [ext_resource type="Texture2D" uid="uid://1d4xl1l8wyhp" path="res://Images/Assets/Character/Running/Running7.png" id="2_6t11x"]
 [ext_resource type="Script" path="res://Particles/TrailEffect.gd" id="3_35nvx"]
+[ext_resource type="Texture2D" uid="uid://n5m4tied4rkn" path="res://Images/Assets/Character/Running/Running7Flipped.png" id="4_3bkbi"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ijkdg"]
 
@@ -36,4 +37,17 @@ script = ExtResource("3_35nvx")
 
 [node name="LifetimeTimer" type="Timer" parent="TrailEffect"]
 
+[node name="TrailEffectFlipped" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ijkdg")
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_yte64")
+texture = ExtResource("4_3bkbi")
+lifetime = 0.2
+one_shot = true
+script = ExtResource("3_35nvx")
+
+[node name="LifetimeTimer" type="Timer" parent="TrailEffectFlipped"]
+
 [connection signal="timeout" from="TrailEffect/LifetimeTimer" to="TrailEffect" method="_on_lifetime_timer_timeout"]
+[connection signal="timeout" from="TrailEffectFlipped/LifetimeTimer" to="TrailEffectFlipped" method="_on_lifetime_timer_timeout"]
