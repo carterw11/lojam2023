@@ -59,7 +59,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		if(hasLanded and canJump): # Hopefully the last hack in this project
 			sprite.stop()
-		if(!sprite.is_playing()):
+		if(!sprite.is_playing() and playerHasControl):
 			sprite.play("Falling")
 		groundWalkParticles.emitting = false
 		hasLanded = false
@@ -80,12 +80,13 @@ func _physics_process(delta):
 			groundWalkParticles.process_material.direction.x = 1
 		else :
 			groundWalkParticles.emitting = false
-			if(!isAttacking):
+			if(!isAttacking and playerHasControl):
 				sprite.stop()
 				sprite.play("Idle")
 		if(!hasLanded):
 			sprite.stop()
-			sprite.play("Landing")
+			if(playerHasControl):
+				sprite.play("Landing")
 			var landParticles = groundLandParticles.instantiate()
 			get_parent().add_child(landParticles)
 			landParticles.position = position
