@@ -93,6 +93,7 @@ offset_right = -56.0
 offset_bottom = 43.0
 text = "Is that a wizard????"
 uppercase = true
+metadata/_edit_use_anchors_ = true
 
 [node name="WizardText" type="Sprite2D" parent="."]
 z_index = 2

@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://dryrbgntkxhdl"]
+[gd_scene load_steps=12 format=3 uid="uid://drgwuj6cxuq6s"]
 
-[ext_resource type="Script" path="res://Levels/cutscene_test.gd" id="1_w4602"]
 [ext_resource type="Texture2D" uid="uid://i4x12i5ijbni" path="res://Images/Assets/Background(1920x1080px).png" id="2_6uv5v"]
 [ext_resource type="PackedScene" uid="uid://d2456kjkf742j" path="res://Levels/tile_map.tscn" id="3_57sfx"]
 [ext_resource type="PackedScene" uid="uid://bta40f4xs3ij3" path="res://Objects/Beanstalk.tscn" id="4_irjb2"]
@@ -12,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ba6egbg5n2f2v" path="res://Images/Assets/Speech/Wizard.png" id="10_edueq"]
 [ext_resource type="Texture2D" uid="uid://b8t4apvp6kv08" path="res://Images/Assets/Shooter/Projectile.png" id="11_q673h"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xfaui"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3x6jj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -26,8 +25,7 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="Cutscene Test" type="Node2D"]
-script = ExtResource("1_w4602")
+[node name="Cutscene3" type="Node2D"]
 
 [node name="Background(1920x1080Px)" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -54,8 +52,7 @@ playerHasControl = false
 [node name="Wizard" type="AnimatedSprite2D" parent="."]
 position = Vector2(1220, 874)
 scale = Vector2(-1, 1)
-sprite_frames = SubResource("SpriteFrames_xfaui")
-frame_progress = 0.299127
+sprite_frames = SubResource("SpriteFrames_3x6jj")
 script = ExtResource("8_lba6s")
 
 [node name="ReadyTimer" type="Timer" parent="."]
@@ -91,8 +88,9 @@ offset_left = -64.0
 offset_top = 26.0
 offset_right = -56.0
 offset_bottom = 43.0
-text = "You're growing so quickly"
+text = "It's the wizard again!"
 uppercase = true
+metadata/_edit_use_anchors_ = true
 
 [node name="WizardText" type="Sprite2D" parent="."]
 z_index = 2
@@ -105,9 +103,8 @@ offset_top = 26.0
 offset_right = 351.0
 offset_bottom = 52.0
 text = "Eat the Bean! 
-You'll be able to dash 
-with shift 
-and help me!"
+You'll be able to Dash
+Press shift! "
 uppercase = true
 
 [node name="bean" type="CharacterBody2D" parent="."]
@@ -116,10 +113,3 @@ uppercase = true
 position = Vector2(909.25, 842.875)
 scale = Vector2(1.54878, 2.28845)
 texture = ExtResource("11_q673h")
-
-[connection signal="timeout" from="ReadyTimer" to="." method="_on_ready_timer_timeout"]
-[connection signal="timeout" from="PlayerWalkIn" to="." method="_on_player_walk_in_timeout"]
-[connection signal="timeout" from="BeanThrowTime" to="." method="_on_bean_throw_time_timeout"]
-[connection signal="timeout" from="WizardTalkTime" to="." method="_on_wizard_talk_time_timeout"]
-[connection signal="timeout" from="WizardFlyOffscreen" to="." method="_on_wizard_fly_offscreen_timeout"]
-[connection signal="timeout" from="PlayerWalkOut" to="." method="_on_player_walk_out_timeout"]
