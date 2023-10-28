@@ -49,12 +49,15 @@ func _on_bean_throw_time_timeout():
 	$WizardText.show()
 	bean.visible = !bean.visible
 	wizardTalkTime.start()
+	
+	
 
 
 func _on_wizard_fly_offscreen_timeout():
 	wizardIsFlying = false
 	player.velocity.x = 600
 	bean.visible = !bean.visible
+	MusicController.play_powerUp()
 	player.sprite.stop()
 	player.sprite.play("Run")
 	playerWalkOutTimer.start()

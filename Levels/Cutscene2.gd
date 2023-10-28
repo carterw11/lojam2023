@@ -55,6 +55,7 @@ func _on_wizard_fly_offscreen_timeout():
 	wizardIsFlying = false
 	player.velocity.x = 600
 	bean.visible = !bean.visible
+	MusicController.play_powerUp()
 	player.sprite.stop()
 	player.sprite.play("Run")
 	playerWalkOutTimer.start()

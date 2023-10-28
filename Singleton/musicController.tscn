@@ -14,8 +14,19 @@ stream = ExtResource("2_ogxpc")
 [node name="Start-SFX" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Menu-Theme" type="AudioStreamPlayer2D" parent="."]
+volume_db = -12.381
 
 [node name="Boost-Jump" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Projectile" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Parry" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Whip" type="AudioStreamPlayer2D" parent="."]
+
+[node name="PowerUP" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="finished" from="Main-Theme" to="." method="_on_main_theme_finished"]
 [connection signal="finished" from="Menu-Theme" to="." method="_on_menu_theme_finished"]

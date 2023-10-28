@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://n034g1i2y3ut" path="res://Images/Assets/Wizard(28 frames between)(118px apart)/Wizard_Idle_Anim(300x300px).png" id="6_y1nnj"]
 [ext_resource type="Texture2D" uid="uid://450ialxwyeg7" path="res://Images/Assets/Wizard(28 frames between)(118px apart)/Wizard_Rest(300x300px).png" id="7_h3nus"]
 [ext_resource type="Script" path="res://Levels/Wizard.gd" id="8_016tq"]
-[ext_resource type="Texture2D" uid="uid://b1hwbgeo5jm65" path="res://Images/Assets/Speech/Char.png" id="9_uuo1a"]
-[ext_resource type="Texture2D" uid="uid://ba6egbg5n2f2v" path="res://Images/Assets/Speech/Wizard.png" id="10_1w086"]
+[ext_resource type="Texture2D" uid="uid://bvhfw5tdiijt8" path="res://Images/Assets/Speech/Char.png" id="9_uuo1a"]
+[ext_resource type="Texture2D" uid="uid://bw5yempwfbrql" path="res://Images/Assets/Speech/Wizard.png" id="10_1w086"]
 [ext_resource type="Texture2D" uid="uid://b8t4apvp6kv08" path="res://Images/Assets/Shooter/Projectile.png" id="11_r3bdm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_82pof"]

@@ -14,6 +14,7 @@ var direction : Vector2 = Vector2(1, 0)
 var active : bool = false
 
 func _ready():
+	MusicController.play_proj()
 	grace.start(graceTime)
 	killTimer.start(killTime)
 
@@ -43,3 +44,4 @@ func _on_area_entered(area):
 	if area.is_in_group("playerAttack"):
 		direction = (self.position - area.get_parent().position).normalized()
 		speed *= 3
+		MusicController.play_parry()

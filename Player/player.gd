@@ -53,6 +53,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var sprite = $Sprite2D
 @onready var groundWalkParticles = $"Ground Walk Particles"
 
+var isDead = false
+
 func _physics_process(delta):
 	
 	# Starts coyote time
@@ -165,6 +167,7 @@ func _physics_process(delta):
 		canDash = false
 		isDashing = true
 		grappleMomentum = 0
+		
 		if(inputDirection != Vector2.ZERO):
 			velocity = dashSpeed * inputDirection
 		else:
@@ -182,7 +185,10 @@ func _physics_process(delta):
 		else:
 			particle.rotation_degrees = 90 * faceDirection
 		particle.position += 80 * Vector2(inputDirection.x,inputDirection.y).normalized()
-		dashTimer.start()	
+		
+		MusicController.play_boost()
+		
+		dashTimer.start()
 
 		# Can only attack once at a time
 	if(!isAttacking and whipUnlocked and !isDashing and playerHasControl):
@@ -239,6 +245,11 @@ func death():
 	sprite.position.y += 70
 	sprite.rotation_degrees = 90
 	playerHasControl = false
+	
+	if !isDead:
+		MusicController.play_death()
+		isDead = true
+	
 	deathTimer.start()
 
 # Timer to stay dashing only for the dedicated amount of time
@@ -252,6 +263,7 @@ func _on_coyote_timer_timeout():
 
 
 func _on_death_timer_timeout():
+	
 	Transition.changeScene(get_parent().scene_file_path)
 
 
@@ -260,3 +272,5 @@ func _on_attack_delay_timer_timeout():
 	add_child(whip)
 	whip.transform = attackPoint.transform
 	whip.rotation_degrees = 90 + (180/PI) * atan2(attackDirection.y,attackDirection.x)
+	
+	MusicController.play_whip()
