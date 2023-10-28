@@ -148,7 +148,7 @@ script = ExtResource("1_ihjul")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2kwap")
-animation = &"Dash"
+animation = &"Death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mcp3o")

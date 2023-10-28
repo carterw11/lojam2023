@@ -20,6 +20,9 @@ light_mask = 2
 visibility_layer = 2
 z_index = 2
 position = Vector2(138, 691)
+doubleJumpUnlocked = false
+dashUnlocked = false
+whipUnlocked = false
 
 [node name="Portal" parent="." instance=ExtResource("4_j1bfm")]
 position = Vector2(-13, 83)
