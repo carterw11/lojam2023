@@ -15,5 +15,7 @@ stream = ExtResource("2_ogxpc")
 
 [node name="Menu-Theme" type="AudioStreamPlayer2D" parent="."]
 
+[node name="Boost-Jump" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="finished" from="Main-Theme" to="." method="_on_main_theme_finished"]
 [connection signal="finished" from="Menu-Theme" to="." method="_on_menu_theme_finished"]
