@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://br88pvgncorgq" path="res://Objects/grapple_point.tscn" id="6_7vn76"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jiseb"]
-size = Vector2(280, 55.0005)
+size = Vector2(351.001, 112.497)
 
 [node name="Level 5 (Double Jump Unlocked)" type="Node2D"]
 
@@ -25,12 +25,12 @@ position = Vector2(242, 917)
 dashUnlocked = false
 
 [node name="Portal" parent="." instance=ExtResource("3_53og4")]
-position = Vector2(91, 977)
+position = Vector2(105, 909)
 rotation = 1.5708
-nextLevel = "res://Levels/Level2.tscn"
+nextLevel = "res://Levels/Level6.tscn"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Portal"]
-position = Vector2(-828.007, -1809)
+position = Vector2(-792.507, -1837.75)
 shape = SubResource("RectangleShape2D_jiseb")
 
 [node name="Camera2D" type="Camera2D" parent="."]

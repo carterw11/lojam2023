@@ -33,7 +33,7 @@ dashUnlocked = false
 [node name="Portal" parent="." instance=ExtResource("3_cwd3m")]
 position = Vector2(-15, 284)
 rotation = 1.5708
-nextLevel = "res://Levels/Level2.tscn"
+nextLevel = "res://Levels/Level8.tscn"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Portal"]
 position = Vector2(-294.007, -1753)
@@ -90,10 +90,10 @@ texture = ExtResource("5_cje25")
 metadata/_edit_lock_ = true
 
 [node name="Grapple Point2" parent="." instance=ExtResource("6_ugfmj")]
-position = Vector2(1574, 689)
+position = Vector2(1581, 555)
 
 [node name="Grapple Point3" parent="." instance=ExtResource("6_ugfmj")]
-position = Vector2(1744, 290)
+position = Vector2(1732, 208)
 
 [node name="ShootingEnemy" parent="." instance=ExtResource("7_eqs3u")]
 z_index = 1
