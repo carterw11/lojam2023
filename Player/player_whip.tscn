@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb6jlp1s4wgr4"]
+[gd_scene load_steps=6 format=3 uid="uid://bb6jlp1s4wgr4"]
 
 [ext_resource type="Script" path="res://Player/player_whip.gd" id="1_3u8ul"]
-[ext_resource type="Texture2D" uid="uid://berhml7cuk6rn" path="res://Images/Assets/Character/Attack/Vine.png" id="2_leiyq"]
+[ext_resource type="Texture2D" uid="uid://g804evy8gsnt" path="res://Images/Assets/Character/Attack/VineBase.png" id="2_xeyb0"]
+[ext_resource type="Texture2D" uid="uid://caaendt4hqrno" path="res://Images/Assets/Character/Attack/VineSegment.png" id="3_d21aq"]
+[ext_resource type="Texture2D" uid="uid://b1wdb63mb3el6" path="res://Images/Assets/Character/Attack/VineEnd.png" id="4_bk16i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e02ij"]
 radius = 18.0
@@ -13,9 +15,9 @@ collision_mask = 7
 script = ExtResource("1_3u8ul")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3, -71)
+position = Vector2(0, -32)
 rotation = -1.14319
-texture = ExtResource("2_leiyq")
+texture = ExtResource("2_xeyb0")
 
 [node name="WhipSnap" type="CollisionShape2D" parent="."]
 position = Vector2(0, -148)
@@ -24,6 +26,41 @@ shape = SubResource("CapsuleShape2D_e02ij")
 [node name="WhipLifespan" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -82)
+rotation = -1.16937
+texture = ExtResource("3_d21aq")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(0, -112)
+rotation = -1.16937
+texture = ExtResource("3_d21aq")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(0, -142)
+rotation = -1.16937
+texture = ExtResource("3_d21aq")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(0, -172)
+rotation = -1.16937
+texture = ExtResource("3_d21aq")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(0, -202)
+rotation = -1.16937
+texture = ExtResource("3_d21aq")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(0, -232)
+rotation = -1.16937
+texture = ExtResource("3_d21aq")
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+position = Vector2(0, -262)
+rotation = -1.16937
+texture = ExtResource("4_bk16i")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="WhipLifespan" to="." method="_on_whip_lifespan_timeout"]
